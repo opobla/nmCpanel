@@ -82,7 +82,7 @@
                                     "        Ext.ComponentQuery.query('#OtherModulePanel')[0].items.items[1].items.items[1].items.items[0].getView().refresh();",
                                     "        MyApp.app.chart3.series[7].setData([]);",
                                     "        MyApp.app.chart3.xAxis[0].setExtremes();",
-                                    "        alert(text);",
+                                    "        alert(text.messege);",
                                     "    },",
                                     "    scope: this",
                                     "});"

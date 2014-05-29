@@ -3,7 +3,7 @@
     "settings": {
         "cmd": {
             "license": "gpl",
-            "cmdVersion": "4.0.3.74",
+            "cmdVersion": "4.0.4.84",
             "frameworkVersion": "4.2.1.883"
         },
         "urlPrefix": "http://localhost:8080/nmCpanel/",
@@ -33,8 +33,8 @@
             "display": "Build web app"
         }
     },
-    "xdsVersion": "3.0.3",
-    "xdsBuild": 1382,
+    "xdsVersion": "3.0.4",
+    "xdsBuild": 1386,
     "schemaVersion": 1,
     "upgradeVersion": 300000000004,
     "framework": "ext42",
