@@ -69,7 +69,7 @@
             "userConfig": {
                 "fn": "launch",
                 "implHandler": [
-                    "debugger;"
+                    ""
                 ]
             },
             "designerId": "88549758-f268-4d38-ae5d-a21ca2115af5"

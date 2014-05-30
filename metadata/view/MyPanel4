@@ -9,7 +9,7 @@
         "designer|userAlias": "mypanel4",
         "designer|userClassName": "MyPanel4",
         "height": null,
-        "itemId": "SpikeChart2Panel",
+        "itemId": "SpikeChannelChartPanel",
         "margin": "0 0 0 3",
         "title": null,
         "width": null

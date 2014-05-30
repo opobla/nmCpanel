@@ -10,7 +10,7 @@
         "designer|userAlias": "mypanel3",
         "designer|userClassName": "MyPanel3",
         "height": 413,
-        "itemId": "OtherModulePanel",
+        "itemId": "SpikeCorrPanel",
         "layout": "hbox",
         "margin": "0 0 0 3",
         "title": null,
@@ -26,7 +26,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "itemId": "ChartHalf",
+                "itemId": "SpikeCorrChartPanel",
                 "layout|flex": 3,
                 "title": null
             },
@@ -41,57 +41,13 @@
             "codeClass": null,
             "userConfig": {
                 "container|align": "stretch",
+                "itemId": "SpikeCorrGridPanel",
                 "layout": "vbox",
                 "layout|flex": 3,
                 "title": null
             },
             "designerId": "5c84515a-f990-4c0f-b330-c9118dc95517",
             "cn": [
-                {
-                    "type": "Ext.button.Button",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "text": "Submit revised data"
-                    },
-                    "designerId": "4225701c-79f6-48ca-aa7e-793e84569fb7",
-                    "cn": [
-                        {
-                            "type": "fixedfunction",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "designer|params": [
-                                    "button",
-                                    "e"
-                                ],
-                                "fn": "handler",
-                                "implHandler": [
-                                    "Ext.ComponentQuery.query('#OtherModulePanel')[0].items.items[1].items.items[1].items.items[0].store.sync({",
-                                    "    url: '/nmdb/marknull',",
-                                    "    success: function(response){",
-                                    "        var text = response.operations[0].request.scope.reader.jsonData;",
-                                    "        debugger;",
-                                    "        Ext.ComponentQuery.query('#OtherModulePanel')[0].items.items[1].items.items[1].items.items[0].store.clearData();",
-                                    "        Ext.ComponentQuery.query('#OtherModulePanel')[0].items.items[1].items.items[1].items.items[0].getView().refresh();",
-                                    "        MyApp.app.chart3.series[7].setData([]);",
-                                    "        MyApp.app.chart3.xAxis[0].setExtremes();",
-                                    "        alert(text.messege);",
-                                    "    },",
-                                    "    scope: this",
-                                    "});"
-                                ]
-                            },
-                            "designerId": "1a5ea4e9-5c90-42da-9452-50d7e4ac2c52"
-                        }
-                    ]
-                },
                 {
                     "type": "Ext.panel.Panel",
                     "reference": {
@@ -100,6 +56,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "itemId": "GridPanel",
                         "layout": "fit",
                         "layout|flex": 2,
                         "title": null
@@ -116,6 +73,7 @@
                             "userConfig": {
                                 "dock": null,
                                 "forceFit": true,
+                                "itemId": "MarkedGrid",
                                 "store": "RevisitedData",
                                 "title": null
                             },
@@ -280,17 +238,22 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "a=Ext.ComponentQuery.query('#OtherModulePanel')[0].items.items[1].items.items[1].items.items[0];",
+                                                            "//First of all start getting a reference of the grid.",
+                                                            "var markedGrid=view;",
                                                             "",
-                                                            "b=MyApp.app.chart3.series[7].data;",
-                                                            "for(x=0;x<b.length;x++){",
-                                                            "    if(b[x].title==a.store.getAt(rowIndex).data.label){",
-                                                            "        b[x].remove(true);",
+                                                            "//Then get a reference of the tagSeries",
+                                                            "var tagSeries = MyApp.app.chartSpikeCorr.series[7].data;",
+                                                            "",
+                                                            "//Find the tag in the tagSeries and remove it from the tagSeries ",
+                                                            "for(x=0;x<tagSeries.length;x++){",
+                                                            "    if(tagSeries[x].title==markedGrid.store.getAt(rowIndex).data.label){",
+                                                            "        tagSeries[x].remove(true);",
                                                             "        break;",
                                                             "    }",
                                                             "}",
                                                             "",
-                                                            "a.store.removeAt(rowIndex);"
+                                                            "//Finaly remove from the grids store.",
+                                                            "markedGrid.store.removeAt(rowIndex);"
                                                         ]
                                                     },
                                                     "designerId": "32f4b899-6fea-4765-8cad-f5174b5b7f5e"
@@ -298,6 +261,78 @@
                                             ]
                                         }
                                     ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": "bottom",
+                        "itemId": "ButtonPanel",
+                        "layout|flex": null,
+                        "title": null
+                    },
+                    "designerId": "2d35a2d2-8051-42cc-8257-f403f28b5d25",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": "top",
+                                "margin": "0 0 20 0",
+                                "text": "Submit revisited data"
+                            },
+                            "designerId": "4225701c-79f6-48ca-aa7e-793e84569fb7",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "//Http post request to the specified url.",
+                                            "//Post params ==> markedGrid data",
+                                            "Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid').store.sync({",
+                                            "    url: '/nmdb/marknull',",
+                                            "    //Actions we take when the request is successful. ",
+                                            "    success: function(response){",
+                                            "        var text = response.operations[0].request.scope.reader.jsonData;",
+                                            "",
+                                            "        //Clear and refresh store ==> Expexted empty store..",
+                                            "        Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid').store.clearData();",
+                                            "        Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid').getView().refresh();",
+                                            "        ",
+                                            "        //Clear tags from the chart and refresh the chart with the new data",
+                                            "        MyApp.app.chartSpikeCorr.series[7].setData([]);",
+                                            "        MyApp.app.chartSpikeCorr.xAxis[0].setExtremes();",
+                                            "        ",
+                                            "        //Alert everything went ok..",
+                                            "        alert(text.messege);",
+                                            "    },",
+                                            "    scope: this",
+                                            "});"
+                                        ]
+                                    },
+                                    "designerId": "1a5ea4e9-5c90-42da-9452-50d7e4ac2c52"
                                 }
                             ]
                         }

@@ -78,7 +78,7 @@
                 "fn": "onDataLoaded",
                 "implHandler": [
                     "var panel=this.getSpikeChartPanel();",
-                    "var panel2=this.getSpikeChart2Panel();",
+                    "var panelChannel=this.getSpikeChannelChartPanel();",
                     "",
                     "var N_points=MyApp.app.N_points;",
                     "",
@@ -290,9 +290,9 @@
                     "});",
                     "",
                     "var series = null;",
-                    "var chart2 = new Highcharts.StockChart({",
+                    "var chartChannels = new Highcharts.StockChart({",
                     "    chart: {",
-                    "        renderTo: panel2.getEl().dom,",
+                    "        renderTo: panelChannel.getEl().dom,",
                     "        height: panel.getHeight(),",
                     "        width: panel.getWidth()",
                     "    },",
@@ -473,7 +473,7 @@
                     "",
                     "",
                     "MyApp.app.chart=chart;",
-                    "MyApp.app.chart2=chart2;"
+                    "MyApp.app.chartChannels=chartChannels;"
                 ]
             },
             "configAlternates": {
@@ -509,10 +509,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "SpikeChart2Panel",
-                "selector": "#SpikeChart2Panel"
+                "ref": "SpikeChannelChartPanel",
+                "selector": "#SpikeChannelChartPanel"
             },
-            "designerId": "9c38c670-33a9-4faa-94d7-4a481ad6fb3a"
+            "designerId": "f9b8c75d-677d-4a81-b4ad-0c9447c2a79d"
         }
     ]
 }

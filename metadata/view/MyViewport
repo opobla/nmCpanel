@@ -107,7 +107,7 @@
                                 "dock": "top",
                                 "itemId": "Chart2Button",
                                 "margin": "5 0 0 0",
-                                "text": "Chart2"
+                                "text": "Channels Chart"
                             },
                             "designerId": "9a223568-dc03-44ce-9297-2f3886e447c6",
                             "cn": [
@@ -506,7 +506,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "title": "OtherModule"
+                        "title": "Spike Corr."
                     },
                     "designerId": "7113dcbd-25fa-4a20-a25f-f8b2505579e8",
                     "cn": [
@@ -520,7 +520,7 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand",
                                 "implHandler": [
-                                    "Ext.History.add('OtherModule');"
+                                    "Ext.History.add('SpikeCorr');"
                                 ],
                                 "name": "beforeexpand",
                                 "scope": "me"
