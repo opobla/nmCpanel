@@ -1,0 +1,140 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "container|align": "stretch",
+        "designer|userAlias": "mypanel12",
+        "designer|userClassName": "MyPanel12",
+        "height": 250,
+        "itemId": "ChannelStatsPanel",
+        "layout": "hbox",
+        "title": "Channel Stats: Default Last Month",
+        "width": 400
+    },
+    "designerId": "5d291214-1ca0-4148-800b-5a824337f675",
+    "cn": [
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "itemId": "ChannelStatsChartPanel",
+                "layout|flex": 1,
+                "title": null
+            },
+            "designerId": "00664c82-af2e-44ce-b818-553c7064197a"
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "forceFit": true,
+                "itemId": "ChannelStatsGrid",
+                "layout|flex": 1,
+                "store": "ChannelStats",
+                "title": null
+            },
+            "designerId": "d76ec9ed-0288-41e7-907e-5754ac787f9b",
+            "cn": [
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "14ab7fea-7d89-430a-b8b2-ff218d03c60f"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "channel",
+                        "text": "Channel"
+                    },
+                    "designerId": "b323093f-3021-45be-9a1a-38caa38dfb59"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "last",
+                        "text": "Last"
+                    },
+                    "designerId": "aa37f340-7df6-4c7a-9ab5-23baf821a28d"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "average",
+                        "text": "Avg"
+                    },
+                    "designerId": "87cc70e1-3e5b-4c35-a59a-55c406b495fa"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "std",
+                        "text": "Std"
+                    },
+                    "designerId": "19b47c71-7668-4142-a397-c88bd3345725"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "max",
+                        "text": "Max"
+                    },
+                    "designerId": "75468134-56fe-4e4e-92fc-e4ca7bb0ae4b"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "min",
+                        "text": "Min"
+                    },
+                    "designerId": "195b3ef7-c532-443d-881f-66318b86e2f4"
+                }
+            ]
+        }
+    ]
+}

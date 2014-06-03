@@ -1,0 +1,40 @@
+{
+    "type": "jsonstore",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "autoLoad": true,
+        "designer|userClassName": "ChannelStats",
+        "model": "ChannelStats",
+        "storeId": "ChannelStats"
+    },
+    "designerId": "26c7c9ff-57be-44cc-afc2-6a30a4fc6029",
+    "cn": [
+        {
+            "type": "Ext.data.proxy.Ajax",
+            "reference": {
+                "name": "proxy",
+                "type": "object"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "url": "/nmdadb/channel/stats/default/default"
+            },
+            "designerId": "b009c6af-2f8d-4e47-8122-c1783159f11d",
+            "cn": [
+                {
+                    "type": "Ext.data.reader.Json",
+                    "reference": {
+                        "name": "reader",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "designerId": "6952cdda-8ded-4137-8752-71257606e1ab"
+                }
+            ]
+        }
+    ]
+}

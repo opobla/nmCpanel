@@ -15,18 +15,21 @@
             "Navigation"
         ],
         "models": [
-            "RevisitedDataSet"
+            "RevisitedDataSet",
+            "ChannelStats"
         ],
         "name": "MyApp",
         "stores": [
-            "RevisitedData"
+            "RevisitedData",
+            "ChannelStats"
         ],
         "views": [
             "MyViewport",
             "MyPanel5",
             "MyPanel6",
             "MyPanel3",
-            "MyPanel4"
+            "MyPanel4",
+            "MyPanel12"
         ]
     },
     "configAlternates": {

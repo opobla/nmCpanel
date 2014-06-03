@@ -537,7 +537,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "title": "OtherModule"
+                        "title": "ChannelStats"
                     },
                     "designerId": "274fa513-725b-4413-a38c-96a34fc6e694",
                     "cn": [
@@ -551,12 +551,247 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand2",
                                 "implHandler": [
-                                    "Ext.History.add('OtherModule');"
+                                    "Ext.History.add('ChannelStats');"
                                 ],
                                 "name": "beforeexpand",
                                 "scope": "me"
                             },
                             "designerId": "bd3fd1c4-d85f-432d-aa26-2af928ed509b"
+                        },
+                        {
+                            "type": "Ext.form.Label",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": "top",
+                                "margin": "20 10 0 0",
+                                "text": "Search for Time Interval"
+                            },
+                            "designerId": "f35347b9-f64d-41ff-be68-12992af0c14b"
+                        },
+                        {
+                            "type": "Ext.form.FieldContainer",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "dock": "top",
+                                "fieldLabel": "Label",
+                                "height": null,
+                                "hideLabel": true,
+                                "itemId": "ChannelStatsIntervalSearch",
+                                "layout": "vbox",
+                                "margin": "20 0 0 0",
+                                "width": 200
+                            },
+                            "designerId": "3cdc2e75-8c4e-465b-89db-799be73ccb98",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "From: "
+                                    },
+                                    "designerId": "bdb602f1-4767-4a8c-a8ba-8101ba56f886"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "From",
+                                        "format": "Y-m-d",
+                                        "hideLabel": true,
+                                        "itemId": "IntervalDateFrom",
+                                        "labelWidth": 50,
+                                        "margin": null,
+                                        "size": 18
+                                    },
+                                    "designerId": "3aaddbb5-9454-40cb-837d-c770d0e61a7c"
+                                },
+                                {
+                                    "type": "Ext.form.field.Time",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": null,
+                                        "format": "H:i:s",
+                                        "itemId": "IntervalHourFrom",
+                                        "labelWidth": 0,
+                                        "margin": null,
+                                        "size": 18,
+                                        "width": null
+                                    },
+                                    "designerId": "a2ac2ff8-e991-40e9-9804-8273795c3397"
+                                },
+                                {
+                                    "type": "Ext.form.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "To:"
+                                    },
+                                    "designerId": "5a6368f7-305d-482c-a36d-8790336585e5"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "To",
+                                        "format": "Y-m-d",
+                                        "hideLabel": true,
+                                        "itemId": "IntervalDateTo",
+                                        "labelWidth": 50,
+                                        "margin": null,
+                                        "size": 18
+                                    },
+                                    "designerId": "ba6ea681-e524-458f-8a33-22c92f3959fd"
+                                },
+                                {
+                                    "type": "Ext.form.field.Time",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": null,
+                                        "format": "H:i:s",
+                                        "itemId": "IntervalHourTo",
+                                        "margin": null,
+                                        "size": 18
+                                    },
+                                    "designerId": "4d60d6ae-2b44-4e5e-a6e2-eb571033dd0a"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "margin": "5 0 0 0",
+                                        "text": "Search"
+                                    },
+                                    "designerId": "43246ea1-a4a0-4615-8024-d174f2a80ab8",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "Ext.ComponentQuery.query('#ChannelStatsPanel')[0].setTitle('Channel stats: From '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourFrom').getRawValue()+' to '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourTo').getRawValue());",
+                                                    "",
+                                                    "Ext.ComponentQuery.query('#ChannelStatsGrid')[0].store.load({",
+                                                    "    url: '/nmdadb/channel/stats/'+Math.floor(this.getTimestamp(Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourFrom').getRawValue())/1000)+'/'+Math.floor(this.getTimestamp(Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourTo').getRawValue())/1000),",
+                                                    "    callback: function(records, operation, success) {",
+                                                    "        var dataOHLC=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];",
+                                                    "        var line=[];       ",
+                                                    "        for (var i=0;i<records.length;i++){",
+                                                    "            line[i]=records[i].data.average;",
+                                                    "            dataOHLC[i][0]=records[i].data.average+records[i].data.std;",
+                                                    "            dataOHLC[i][1]=records[i].data.max;",
+                                                    "            dataOHLC[i][2]=records[i].data.min;",
+                                                    "            dataOHLC[i][3]=records[i].data.average-records[i].data.std;",
+                                                    "            ",
+                                                    "        }",
+                                                    "        MyApp.app.chartChannelStats.series[0].setData(dataOHLC);",
+                                                    "        MyApp.app.chartChannelStats.series[1].setData(line);",
+                                                    "    },",
+                                                    "    scope: this",
+                                                    "});",
+                                                    "",
+                                                    ""
+                                                ]
+                                            },
+                                            "designerId": "01ef01ee-520a-402b-900c-c9457fc44b73"
+                                        },
+                                        {
+                                            "type": "basicfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "str"
+                                                ],
+                                                "fn": "getTimestamp",
+                                                "implHandler": [
+                                                    "var d = str.match(/\\d+/g); //extract date parts",
+                                                    "return +new Date(Date.UTC(d[0], d[1] - 1, d[2], d[3], d[4], d[5])); //build Date object"
+                                                ]
+                                            },
+                                            "designerId": "41d7ff63-7bc5-4f75-bbb4-f839ce63369b"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "OtherModule"
+                    },
+                    "designerId": "0984fb71-f0a5-48e5-a42f-84e4c7719655",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onPanelBeforeExpand21",
+                                "implHandler": [
+                                    "Ext.History.add('OtherModule');"
+                                ],
+                                "name": "beforeexpand",
+                                "scope": "me"
+                            },
+                            "designerId": "df7944eb-28ef-4c91-a4fc-5c8beb7fc404"
                         }
                     ]
                 }
@@ -615,6 +850,16 @@
                     "codeClass": null,
                     "designerId": "eb74f8b2-df6a-481b-9506-6e516ea804a9",
                     "masterInstanceId": "bb9e7b96-d32d-47f3-b9aa-17dc88a37540"
+                },
+                {
+                    "type": "linkedinstance",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "designerId": "7531bc92-3632-451a-b80f-2a27dd0cff24",
+                    "masterInstanceId": "5d291214-1ca0-4148-800b-5a824337f675"
                 }
             ]
         }
