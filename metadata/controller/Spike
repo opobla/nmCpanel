@@ -27,7 +27,16 @@
             "userConfig": {
                 "fn": "onLaunch",
                 "implHandler": [
-                    "this.doLoadData();"
+                    "MyApp.app.spike={};",
+                    "MyApp.app.spike.panel=this.getSpikeChartPanel();",
+                    "MyApp.app.spike.panelHeight=MyApp.app.spike.panel.getHeight();",
+                    "MyApp.app.spike.panelWidth=MyApp.app.spike.panel.getWidth();",
+                    "MyApp.app.spike.N_points=Math.round(MyApp.app.spike.panelWidth/4);",
+                    "MyApp.app.spike.panelChannels=this.getSpikeChannelChartPanel();",
+                    "MyApp.app.spike.data=null; //This is given value in loadSpikeData",
+                    "",
+                    "this.loadSpikeData();",
+                    ""
                 ]
             },
             "designerId": "cae7e7c1-7fa5-49d9-aae4-a0c378dd6cc8"
@@ -40,22 +49,20 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "doLoadData",
+                "fn": "loadSpikeData",
                 "implHandler": [
-                    "var panel=this.getSpikeChartPanel();",
-                    "MyApp.app.N_points=Math.round(panel.getWidth()/4);",
+                    "MyApp.app.spike.panel.setLoading(true);",
                     "",
-                    "var N_points=MyApp.app.N_points;",
                     "Ext.Ajax.request({",
-                    "    url: '/nmdb/uncorrected/group/all/all/'+ N_points,",
-                    "    //method: \"GET\",",
+                    "    url: '/nmdb/uncorrected/group/all/all/'+ MyApp.app.spike.N_points,",
                     "    success: function(response){",
                     "        var text = response.responseText;",
                     "        data=Ext.JSON.decode(text);",
-                    "        data[0] = [].concat(data[0], [[Date.now(), null, null, null, null]]);",
-                    "        MyApp.app.data=data;",
-                    "        this.onDataLoaded(data);",
-                    "",
+                    "        data[0] = [].concat(data[0], [[Date.now(), null, null, null, null]]);  //  TODO make the server do this with the last data present in the database",
+                    "        MyApp.app.spike.data=data;",
+                    "        this.initSpikeChart();",
+                    "        this.initSpikeChannelChart();",
+                    "        MyApp.app.spike.panel.setLoading(false);",
                     "    },",
                     "    scope: this",
                     "});"
@@ -72,20 +79,25 @@
             "codeClass": null,
             "userConfig": {
                 "N_points": 0,
-                "designer|params": [
-                    "data"
-                ],
-                "fn": "onDataLoaded",
+                "fn": "initSpikeChart",
                 "implHandler": [
-                    "var panel=this.getSpikeChartPanel();",
-                    "var panelChannel=this.getSpikeChannelChartPanel();",
+                    "var data=MyApp.app.spike.data;",
+                    "var panel=MyApp.app.spike.panel;",
+                    "var panelChannel=MyApp.app.spike.panelChannels;",
+                    "var N_points=MyApp.app.spike.N_points;",
                     "",
-                    "var N_points=MyApp.app.N_points;",
+                    "var yAxisPressHeight=100;",
+                    "var yAxisOhclHeight=MyApp.app.spike.panelHeight -yAxisPressHeight -165; //The 165 cant be changed",
+                    "var yAxisOhclTop=yAxisPressHeight +50; //The 50 cant be changed",
                     "",
+                    "function myfunc(){",
+                    "    return true;",
+                    "}",
+                    "",
+                    "debugger;",
                     "var chart = new Highcharts.StockChart({",
                     "            chart: {",
                     "                renderTo: panel.getEl().dom,",
-                    "",
                     "                zoomType: 'x'",
                     "            },",
                     "",
@@ -117,6 +129,9 @@
                     "                                success: function(response){",
                     "                                    var text = response.responseText;",
                     "                                    data=Ext.JSON.decode(text);",
+                    "",
+                    "                                    m=myfunc();",
+                    "                                    debugger;",
                     "                                    MyApp.app.data=data;",
                     "                                    MyApp.app.IsCandle = false;",
                     "                                    Ext.ComponentQuery.query('#Chart2Button')[0].enable(true);",
@@ -187,8 +202,8 @@
                     "",
                     "                    }",
                     "\t\t\t\t},",
-                    "\t\t\t\tminRange: 1*(N_points)/*one Min*/*60*1000,",
-                    "                ordinal: false//,top:-100",
+                    "\t\t\t\tminRange: 0.75*(N_points)/*one Min*/*60*1000,",
+                    "                ordinal: false",
                     "\t\t\t},",
                     "",
                     "\t\t\tnavigator : {",
@@ -213,8 +228,8 @@
                     "                labels:{",
                     "                    x:10",
                     "                },",
-                    "\t\t\t\ttop: 150,",
-                    "\t\t\t\theight: 365,",
+                    "\t\t\t\ttop: yAxisOhclTop,",
+                    "\t\t\t\theight: yAxisOhclHeight,",
                     "\t\t\t\tmin: 20,",
                     "\t\t\t\tmax: 251",
                     "\t\t\t},{",
@@ -225,7 +240,7 @@
                     "                labels:{",
                     "                    x:10",
                     "                },",
-                    "\t\t\t\theight: 100,",
+                    "\t\t\t\theight: yAxisPressHeight,",
                     "\t\t\t\toffset: 0,",
                     "\t\t\t\tmin: 880,",
                     "\t\t\t\tmax: 980",
@@ -289,12 +304,41 @@
                     "\t\t\t}]",
                     "});",
                     "",
+                    "MyApp.app.chart=chart;"
+                ]
+            },
+            "configAlternates": {
+                "N_points": "number"
+            },
+            "designerId": "9477a0c7-1ebc-4b63-b248-cb65b6b7b33b",
+            "customConfigs": [
+                {
+                    "group": "(Custom Properties)",
+                    "name": "N_points",
+                    "type": "string"
+                }
+            ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "initSpikeChannelChart",
+                "implHandler": [
                     "var series = null;",
+                    "var panel= MyApp.app.spike.panelChannels;",
+                    "var height= MyApp.app.spike.panelHeight;",
+                    "var width= MyApp.app.spike.panelWidth;",
+                    "",
                     "var chartChannels = new Highcharts.StockChart({",
                     "    chart: {",
-                    "        renderTo: panelChannel.getEl().dom,",
-                    "        height: panel.getHeight(),",
-                    "        width: panel.getWidth()",
+                    "        renderTo: panel.getEl().dom,",
+                    "        height: height,",
+                    "        width: width",
                     "    },",
                     "    title: {",
                     "        text: 'Hi there Spikes'",
@@ -471,22 +515,10 @@
                     "    }]",
                     "});",
                     "",
-                    "",
-                    "MyApp.app.chart=chart;",
                     "MyApp.app.chartChannels=chartChannels;"
                 ]
             },
-            "configAlternates": {
-                "N_points": "number"
-            },
-            "designerId": "9477a0c7-1ebc-4b63-b248-cb65b6b7b33b",
-            "customConfigs": [
-                {
-                    "group": "(Custom Properties)",
-                    "name": "N_points",
-                    "type": "string"
-                }
-            ]
+            "designerId": "b344ac78-d987-4b48-8483-8b373793dbc4"
         },
         {
             "type": "controllerref",

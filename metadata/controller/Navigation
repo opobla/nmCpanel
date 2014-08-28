@@ -65,7 +65,7 @@
                     "                        }",
                     "",
                     "                        MyApp.app.chartChannels.hideLoading();",
-                    "                        MyApp.app.chartChannels.hideLo$ading();",
+                    "                        MyApp.app.chartChannels.hideLoading();",
                     "",
                     "                    },",
                     "                    scope: this",
