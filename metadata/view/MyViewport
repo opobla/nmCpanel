@@ -176,6 +176,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "dock": "top",
+                                "itemId": "SpikeChoiceSeries",
                                 "margin": "20 0 0 0",
                                 "text": "Choice a Series"
                             },
@@ -217,11 +218,12 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "Ext.History.add('SpikeChart/Uncorrected');",
+                                                            "if(MyApp.app.spike.mode<3)",
+                                                            "    MyApp.app.spike.mode=0;",
+                                                            "else",
+                                                            "    MyApp.app.spike.mode=3;",
                                                             "",
-                                                            "MyApp.app.IsUncorrected=true;",
-                                                            "MyApp.app.IsCorrPress=false;",
-                                                            "MyApp.app.IsCorrEffic=false;"
+                                                            "MyApp.app.getController(\"Spike\").updateSeries();"
                                                         ]
                                                     },
                                                     "designerId": "3df0fee2-9d23-460c-9fe8-c5625c63bbd7"
@@ -255,11 +257,12 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "Ext.History.add('SpikeChart/Pressure');",
+                                                            "if(MyApp.app.spike.mode<3)",
+                                                            "    MyApp.app.spike.mode=1;",
+                                                            "else",
+                                                            "    MyApp.app.spike.mode=4;",
                                                             "",
-                                                            "MyApp.app.IsUncorrected=false;",
-                                                            "MyApp.app.IsCorrPress=true;",
-                                                            "MyApp.app.IsCorrEffic=false;"
+                                                            "MyApp.app.getController(\"Spike\").updateSeries();"
                                                         ]
                                                     },
                                                     "designerId": "3ea8637f-cbe7-4f7d-9f70-b43edc55c36f"
@@ -293,11 +296,12 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "Ext.History.add('SpikeChart/Efficiency');",
+                                                            "if(MyApp.app.spike.mode<3)",
+                                                            "    MyApp.app.spike.mode=2;",
+                                                            "else",
+                                                            "    MyApp.app.spike.mode=5;",
                                                             "",
-                                                            "MyApp.app.IsUncorrected=false;",
-                                                            "MyApp.app.IsCorrPress=false;",
-                                                            "MyApp.app.IsCorrEffic=true;"
+                                                            "MyApp.app.getController(\"Spike\").updateSeries();"
                                                         ]
                                                     },
                                                     "designerId": "a38cae74-d0cf-44fa-bd1a-c85e11f12607"

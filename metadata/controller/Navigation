@@ -26,33 +26,18 @@
                     "Ext.History.init();",
                     "",
                     "Ext.History.on('change',function (hash){",
-                    "    aux=hash.split('/');",
-                    "",
-                    "    switch(aux[0]){",
+                    "    switch(hash){",
                     "        case 'SpikeChart':",
-                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').show(true);",
-                    "",
                     "            this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeChartPanel());",
-                    "                switch(aux[1]){",
-                    "                    case undefined:",
-                    "                        break;",
-                    "                    case 'Uncorrected':",
-                    "                        this.showUncorrected();",
-                    "                        break;",
-                    "                    case 'Pressure':",
-                    "                        this.showPressure();",
-                    "                        break;",
-                    "                    case 'Efficiency':",
-                    "                        this.showEfficiency();",
-                    "                        break;",
-                    "                    default:",
-                    "                        console.log('Chart--> '+hash);",
-                    "                }",
+                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').show(true);",
+                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').show(true);",
+                    "",
                     "            break;",
                     "        case 'SpikeChart2':",
-                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').hide(true);",
-                    "",
                     "            this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeChannelChartPanel());",
+                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').hide(true);",
+                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').hide(true);",
+                    "            ",
                     "                MyApp.app.chartChannels.showLoading('Loading data from server...');",
                     "                Ext.Ajax.request({",
                     "                    url: '/nmdadb/rawdata/'+Math.round(MyApp.app.chart.xAxis[0].min/1000)+'/'+Math.round(MyApp.app.chart.xAxis[0].max/1000),",
@@ -73,6 +58,8 @@
                     "            break;",
                     "        case 'SpikeStat':",
                     "            this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeStatPanel());",
+                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').hide(true);",
+                    "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').hide(true);",
                     "            break;",
                     "        case 'SpikeCorr':",
                     "            this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeCorrPanel());",
@@ -428,87 +415,6 @@
                 ]
             },
             "designerId": "2cf6b7c5-0dce-4408-bc22-5b1a6912cf64"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "showUncorrected",
-                "implHandler": [
-                    "MyApp.app.chart.series[0].setData([]);",
-                    "MyApp.app.chart.series[1].setData([]);",
-                    "MyApp.app.chart.series[2].setData([]);",
-                    "MyApp.app.chart.series[3].setData([]);",
-                    "MyApp.app.chart.series[4].setData([]);",
-                    "MyApp.app.chart.series[5].setData([]);",
-                    "if(MyApp.app.IsCandle){",
-                    "    MyApp.app.chart.series[0].setData(MyApp.app.data[0]);",
-                    "    MyApp.app.chart.series[1].setData([]);",
-                    "}else{",
-                    "    MyApp.app.chart.series[0].setData([]);",
-                    "    MyApp.app.chart.series[1].setData(MyApp.app.data[0]);",
-                    "}"
-                ]
-            },
-            "designerId": "8b017a64-a251-4c81-a0eb-8e56940f8538"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "showPressure",
-                "implHandler": [
-                    "MyApp.app.chart.series[0].setData([]);",
-                    "MyApp.app.chart.series[1].setData([]);",
-                    "MyApp.app.chart.series[2].setData([]);",
-                    "MyApp.app.chart.series[3].setData([]);",
-                    "MyApp.app.chart.series[4].setData([]);",
-                    "MyApp.app.chart.series[5].setData([]);",
-                    "if(MyApp.app.IsCandle){",
-                    "    MyApp.app.chart.series[2].setData(MyApp.app.data[1]);",
-                    "    MyApp.app.chart.series[3].setData([]);",
-                    "}else{",
-                    "    MyApp.app.chart.series[2].setData([]);",
-                    "    MyApp.app.chart.series[3].setData(MyApp.app.data[1]);",
-                    "}"
-                ]
-            },
-            "designerId": "7b33eab7-3645-4ea5-94f3-7c0a4db1dd05"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "showEfficiency",
-                "implHandler": [
-                    "MyApp.app.chart.series[0].setData([]);",
-                    "MyApp.app.chart.series[1].setData([]);",
-                    "MyApp.app.chart.series[2].setData([]);",
-                    "MyApp.app.chart.series[3].setData([]);",
-                    "MyApp.app.chart.series[4].setData([]);",
-                    "MyApp.app.chart.series[5].setData([]);",
-                    "if(MyApp.app.IsCandle){",
-                    "    MyApp.app.chart.series[4].setData(MyApp.app.data[2]);",
-                    "    MyApp.app.chart.series[5].setData([]);",
-                    "}else{",
-                    "    MyApp.app.chart.series[4].setData([]);",
-                    "    MyApp.app.chart.series[5].setData(MyApp.app.data[2]);",
-                    "}"
-                ]
-            },
-            "designerId": "afb76b00-ea4f-4767-a46e-df5e8777221c"
         },
         {
             "type": "controllerref",
