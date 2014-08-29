@@ -6,9 +6,6 @@
     },
     "codeClass": null,
     "userConfig": {
-        "IsCorrEffic": null,
-        "IsCorrPress": null,
-        "IsUncorrected": null,
         "controllers": [
             "Spike",
             "Navigation",
@@ -39,23 +36,6 @@
         "IsCandle": "boolean"
     },
     "designerId": "application",
-    "customConfigs": [
-        {
-            "group": "(Custom Properties)",
-            "name": "IsUncorrected",
-            "type": "string"
-        },
-        {
-            "group": "(Custom Properties)",
-            "name": "IsCorrPress",
-            "type": "string"
-        },
-        {
-            "group": "(Custom Properties)",
-            "name": "IsCorrEffic",
-            "type": "string"
-        }
-    ],
     "cn": [
         {
             "type": "fixedfunction",

@@ -228,7 +228,7 @@
                     "        name : 'Flags',                    //7",
                     "        type: 'flags',",
                     "        data: null,",
-                    "        y: -110,",
+                    "        yAxis: 1,",
                     "        shape: 'squarepin',",
                     "        width : 16",
                     "    }]",
