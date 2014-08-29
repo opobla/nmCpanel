@@ -508,6 +508,80 @@
                             "userConfig": {
                                 "dock": "top",
                                 "margin": "5 0 0 0",
+                                "text": "Chart"
+                            },
+                            "designerId": "79b26c10-3a09-492e-bdb2-f65917c4be1a",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "Ext.History.add('SpikeCorr');"
+                                        ]
+                                    },
+                                    "designerId": "e2ab2f1e-3a26-43a4-8792-b5728f478f84"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "allowDepress": false,
+                                "disabled": true,
+                                "dock": "top",
+                                "itemId": "CorrChart2Button",
+                                "margin": "5 0 0 0",
+                                "text": "Channels Chart"
+                            },
+                            "designerId": "a643181b-43c9-46ff-a00e-7eba2cc41aaf",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "Ext.History.add('SpikeCorrChart2');"
+                                        ]
+                                    },
+                                    "designerId": "5819ff2c-5bb8-422e-a5e0-6854f7ebec7d"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": "top",
+                                "itemId": "SpikeCorrSelPoints",
+                                "margin": "15 0 0 0",
                                 "text": "Selected Points"
                             },
                             "designerId": "6de693df-d559-46cc-a741-1ce3258479ef",
@@ -543,7 +617,7 @@
                             "userConfig": {
                                 "dock": "top",
                                 "itemId": "SpikeCorrChoiceSeries",
-                                "margin": "20 0 0 0",
+                                "margin": "15 0 0 0",
                                 "text": "Choice a Series"
                             },
                             "designerId": "871655f2-be51-45c0-8c5c-5cdbd827f1f2",
@@ -678,7 +752,7 @@
                                 "hideLabel": true,
                                 "itemId": "SpikeCorrIntervalSearch",
                                 "layout": "vbox",
-                                "margin": "20 0 0 0",
+                                "margin": "15 0 0 0",
                                 "width": 200
                             },
                             "designerId": "ea18b56c-e8d6-4b8c-9367-9d436b58c11e",
