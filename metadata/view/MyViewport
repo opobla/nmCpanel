@@ -476,6 +476,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "itemId": "SpikeCorrControls",
                         "title": "Spike Corr."
                     },
                     "designerId": "7113dcbd-25fa-4a20-a25f-f8b2505579e8",
@@ -496,6 +497,193 @@
                                 "scope": "me"
                             },
                             "designerId": "24e7e695-623f-4a71-a29b-c7500a2c797b"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": "top",
+                                "margin": "5 0 0 0",
+                                "text": "Selected Points"
+                            },
+                            "designerId": "6de693df-d559-46cc-a741-1ce3258479ef",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "MyApp.app.getController(\"SpikeCorr\").showGrid(MyApp.app.spikeCorr);"
+                                        ]
+                                    },
+                                    "designerId": "8ab6e734-df79-491a-bf2a-8e02d7747e28"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.form.FieldContainer",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "container|align": "stretch",
+                                "dock": "top",
+                                "fieldLabel": "Label",
+                                "height": null,
+                                "hideLabel": true,
+                                "itemId": "SpikeCorrIntervalSearch",
+                                "layout": "vbox",
+                                "margin": "20 0 0 0",
+                                "width": 200
+                            },
+                            "designerId": "ea18b56c-e8d6-4b8c-9367-9d436b58c11e",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "From: "
+                                    },
+                                    "designerId": "a2f91b78-9cad-423b-b553-c9868f6729c6"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "From",
+                                        "format": "Y-m-d",
+                                        "hideLabel": true,
+                                        "itemId": "SpikeIntervalDateFrom",
+                                        "labelWidth": 50,
+                                        "margin": null,
+                                        "size": 18
+                                    },
+                                    "designerId": "01e85681-7c5b-42e0-a436-5232a0618cec"
+                                },
+                                {
+                                    "type": "Ext.form.field.Time",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": null,
+                                        "format": "H:i:s",
+                                        "itemId": "SpikeIntervalHourFrom",
+                                        "labelWidth": 0,
+                                        "margin": null,
+                                        "size": 18,
+                                        "width": null
+                                    },
+                                    "designerId": "a2046171-e61a-4c90-8a90-c3258a010adc"
+                                },
+                                {
+                                    "type": "Ext.form.Label",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "text": "To:"
+                                    },
+                                    "designerId": "1b0106a6-1766-4ffe-b3f8-e9b0ab5a866c"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "To",
+                                        "format": "Y-m-d",
+                                        "hideLabel": true,
+                                        "itemId": "SpikeIntervalDateTo",
+                                        "labelWidth": 50,
+                                        "margin": null,
+                                        "size": 18
+                                    },
+                                    "designerId": "3fe4da89-5fab-4fd5-8c3c-89407f256f66"
+                                },
+                                {
+                                    "type": "Ext.form.field.Time",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": null,
+                                        "format": "H:i:s",
+                                        "itemId": "SpikeIntervalHourTo",
+                                        "margin": null,
+                                        "size": 18
+                                    },
+                                    "designerId": "1a472600-8e1b-4617-acb7-14c09b6d56ea"
+                                },
+                                {
+                                    "type": "Ext.button.Button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "margin": "5 0 0 0",
+                                        "text": "Search"
+                                    },
+                                    "designerId": "16eff511-b83a-46f6-8083-02478b71b322",
+                                    "cn": [
+                                        {
+                                            "type": "fixedfunction",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|params": [
+                                                    "button",
+                                                    "e"
+                                                ],
+                                                "fn": "handler",
+                                                "implHandler": [
+                                                    "start=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalHourFrom').getRawValue();",
+                                                    "finish=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalHourTo').getRawValue();",
+                                                    "MyApp.app.getController(\"Spike\").searchInterval(start, finish, MyApp.app.spikeCorr);"
+                                                ]
+                                            },
+                                            "designerId": "36610a03-e2b1-438b-8106-a083fb0eb80f"
+                                        }
+                                    ]
+                                }
+                            ]
                         }
                     ]
                 },

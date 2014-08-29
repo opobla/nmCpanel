@@ -25,11 +25,12 @@
                     "MyApp.app.spikeCorr.panelHeight=MyApp.app.spikeCorr.panel.getHeight();",
                     "MyApp.app.spikeCorr.panelWidth=MyApp.app.spikeCorr.panel.getWidth();",
                     "MyApp.app.spikeCorr.N_points=Math.round(MyApp.app.spikeCorr.panelWidth/4);",
-                    "MyApp.app.spikeCorr.panelChannels=null; // TODO remove",
                     "MyApp.app.spikeCorr.data=null; //This is given value in loadSpikeData",
                     "MyApp.app.spikeCorr.mode=0;// 0 means candle, uncorrected",
                     "MyApp.app.spikeCorr.letter=65;  //ASCII 'A'",
                     "MyApp.app.spikeCorr.grid=Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid');",
+                    "",
+                    "MyApp.app.spikeCorr.panelGrid=Ext.ComponentQuery.query('#SpikeCorrGridPanel')[0];",
                     "",
                     "this.loadSpikeCorrData(MyApp.app.spikeCorr);",
                     ""
@@ -365,7 +366,7 @@
                     "        //Clear and refresh store ==> Expexted empty store..",
                     "        module.grid.store.clearData();",
                     "        module.grid.getView().refresh();",
-                    "        ",
+                    "",
                     "        //Clear tags from the chart and refresh the chart with the new data",
                     "        module.chart.series[7].setData([]);",
                     "        module.chart.xAxis[0].setExtremes();",
@@ -378,6 +379,65 @@
                 ]
             },
             "designerId": "b9b4ce9a-8c83-4f70-a864-97cd171d01a3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "showGrid",
+                "implHandler": [
+                    "module.panelGrid.setHeight(300);",
+                    "module.panelGrid.setWidth(600);",
+                    "module.panelGrid.setPosition(module.panelWidth -600 -10, 10);",
+                    "module.panelGrid.show();"
+                ]
+            },
+            "designerId": "5935e3fe-4f6b-4342-b835-421abc185b4d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "clearGrid",
+                "implHandler": [
+                    "module.chart.series[7].setData([]);",
+                    "module.grid.store.removeAll();",
+                    ""
+                ]
+            },
+            "designerId": "f653afe0-f751-4c60-93c2-9ace0a2590d3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "closeGrid",
+                "implHandler": [
+                    "module.panelGrid.hide();"
+                ]
+            },
+            "designerId": "875b8fcd-73ca-4fa0-ac3b-020c83958b6e"
         },
         {
             "type": "controllerref",

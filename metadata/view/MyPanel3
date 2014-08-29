@@ -41,10 +41,13 @@
             "codeClass": null,
             "userConfig": {
                 "container|align": "stretch",
+                "floating": true,
+                "height": 400,
                 "itemId": "SpikeCorrGridPanel",
                 "layout": "vbox",
                 "layout|flex": 3,
-                "title": "Marked Data"
+                "title": "Marked Data",
+                "width": 400
             },
             "designerId": "5c84515a-f990-4c0f-b330-c9118dc95517",
             "cn": [
@@ -261,8 +264,10 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "container|align": "stretch",
                         "dock": "bottom",
                         "itemId": "ButtonPanel",
+                        "layout": "hbox",
                         "layout|flex": null,
                         "title": null
                     },
@@ -271,14 +276,15 @@
                         {
                             "type": "Ext.button.Button",
                             "reference": {
-                                "name": "dockedItems",
+                                "name": "items",
                                 "type": "array"
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "dock": "top",
-                                "margin": "0 0 20 0",
-                                "text": "Submit revisited data"
+                                "dock": null,
+                                "layout|flex": 1,
+                                "margin": "0 0 0 5",
+                                "text": "Submit"
                             },
                             "designerId": "4225701c-79f6-48ca-aa7e-793e84569fb7",
                             "cn": [
@@ -300,6 +306,76 @@
                                         ]
                                     },
                                     "designerId": "1a5ea4e9-5c90-42da-9452-50d7e4ac2c52"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "margin": "0 0 0 5",
+                                "text": "Clear"
+                            },
+                            "designerId": "9dace417-7cbf-451e-ae11-44e70607a116",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "MyApp.app.getController(\"SpikeCorr\").clearGrid(MyApp.app.spikeCorr);"
+                                        ]
+                                    },
+                                    "designerId": "0741fd1c-dfa6-444e-8206-81e146ff2a11"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": 1,
+                                "margin": "0 5 0 5",
+                                "text": "Close"
+                            },
+                            "designerId": "00e507de-4db9-46e5-a907-3ddb38639b29",
+                            "cn": [
+                                {
+                                    "type": "fixedfunction",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|params": [
+                                            "button",
+                                            "e"
+                                        ],
+                                        "fn": "handler",
+                                        "implHandler": [
+                                            "MyApp.app.getController(\"SpikeCorr\").closeGrid(MyApp.app.spikeCorr);"
+                                        ]
+                                    },
+                                    "designerId": "23826e9f-3640-4540-814d-76488e316f23"
                                 }
                             ]
                         }
