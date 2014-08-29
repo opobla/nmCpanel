@@ -534,6 +534,136 @@
                             ]
                         },
                         {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "dock": "top",
+                                "itemId": "SpikeCorrChoiceSeries",
+                                "margin": "20 0 0 0",
+                                "text": "Choice a Series"
+                            },
+                            "designerId": "871655f2-be51-45c0-8c5c-5cdbd827f1f2",
+                            "cn": [
+                                {
+                                    "type": "Ext.menu.Menu",
+                                    "reference": {
+                                        "name": "menu",
+                                        "type": "object"
+                                    },
+                                    "codeClass": null,
+                                    "designerId": "6ea317df-601b-4170-a725-4d4629cac3ef",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.menu.Item",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": null,
+                                                "text": "Incorrected"
+                                            },
+                                            "designerId": "2551910e-06c0-4e34-9263-3a700600b3bf",
+                                            "cn": [
+                                                {
+                                                    "type": "fixedfunction",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|params": [
+                                                            "item",
+                                                            "e"
+                                                        ],
+                                                        "fn": "handler",
+                                                        "implHandler": [
+                                                            "MyApp.app.getController(\"Spike\").changeSeries(0, MyApp.app.spikeCorr);"
+                                                        ]
+                                                    },
+                                                    "designerId": "24aa9db8-d25a-44bd-bd22-3a7309dc6f9b"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.menu.Item",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": null,
+                                                "text": "Corrected for Pressure"
+                                            },
+                                            "designerId": "caa68d81-20f2-4065-b49e-5769f00d5e10",
+                                            "cn": [
+                                                {
+                                                    "type": "fixedfunction",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|params": [
+                                                            "item",
+                                                            "e"
+                                                        ],
+                                                        "fn": "handler",
+                                                        "implHandler": [
+                                                            "MyApp.app.getController(\"Spike\").changeSeries(1, MyApp.app.spikeCorr);"
+                                                        ]
+                                                    },
+                                                    "designerId": "9bcb46c3-f2f0-49de-ac12-5cee6f7d7aee"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.menu.Item",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "designer|displayName": null,
+                                                "text": "Corrected for Efficiency"
+                                            },
+                                            "designerId": "940641de-3a82-4686-8108-442cd1721624",
+                                            "cn": [
+                                                {
+                                                    "type": "fixedfunction",
+                                                    "reference": {
+                                                        "name": "items",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "designer|params": [
+                                                            "item",
+                                                            "e"
+                                                        ],
+                                                        "fn": "handler",
+                                                        "implHandler": [
+                                                            "MyApp.app.getController(\"Spike\").changeSeries(2, MyApp.app.spikeCorr);"
+                                                        ]
+                                                    },
+                                                    "designerId": "73eeb916-b5a5-4c01-98b9-b4e3eeb69f8a"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
                             "type": "Ext.form.FieldContainer",
                             "reference": {
                                 "name": "dockedItems",
