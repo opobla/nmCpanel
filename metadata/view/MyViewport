@@ -438,31 +438,12 @@
                                                 ],
                                                 "fn": "handler",
                                                 "implHandler": [
-                                                    "MyApp.app.chart.xAxis[0].setExtremes(",
-                                                    "\t\t\t\t\tthis.getTimestamp(Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalHourFrom').getRawValue()),",
-                                                    "\t\t\t\t\tthis.getTimestamp(Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalHourTo').getRawValue()));"
+                                                    "start=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalHourFrom').getRawValue();",
+                                                    "finish=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').down('#SpikeIntervalHourTo').getRawValue();",
+                                                    "MyApp.app.getController(\"Spike\").searchInterval(start, finish, MyApp.app.spike);"
                                                 ]
                                             },
                                             "designerId": "9c4efc63-0fd1-4b20-934f-1acda56d34b1"
-                                        },
-                                        {
-                                            "type": "basicfunction",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|params": [
-                                                    "str"
-                                                ],
-                                                "fn": "getTimestamp",
-                                                "implHandler": [
-                                                    "var d = str.match(/\\d+/g); //extract date parts",
-                                                    "return +new Date(Date.UTC(d[0], d[1] - 1, d[2], d[3], d[4], d[5])); //build Date object"
-                                                ]
-                                            },
-                                            "designerId": "f856707b-838d-4d85-b6a8-f9cc48a09c44"
                                         }
                                     ]
                                 }
