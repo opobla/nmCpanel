@@ -579,6 +579,45 @@
             "designerId": "b344ac78-d987-4b48-8483-8b373793dbc4"
         },
         {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "updateChannelData",
+                "implHandler": [
+                    "//MyApp.app.chartChannels.showLoading('Loading data from server...');",
+                    "module.chartChannels.showLoading('Loading data from server...');",
+                    "start=Math.round(module.chart.xAxis[0].min/1000);",
+                    "finish=Math.round(module.chart.xAxis[0].max/1000);",
+                    "my_url='/nmdadb/rawdata/'+start+'/'+finish;",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: my_url,",
+                    "    success: function(response){",
+                    "        var text = response.responseText;",
+                    "        data=Ext.JSON.decode(text);",
+                    "        ",
+                    "        for (var i=0;i<=17;i++){",
+                    "            module.chartChannels.series[i].setData(data[i]);",
+                    "        }",
+                    "        ",
+                    "        module.chartChannels.hideLoading();",
+                    "        module.chartChannels.hideLoading();",
+                    "        ",
+                    "    },",
+                    "    scope: this",
+                    "});"
+                ]
+            },
+            "designerId": "81351275-49cf-4ec2-a64d-c697fa37c797"
+        },
+        {
             "type": "controllerref",
             "reference": {
                 "name": "items",
