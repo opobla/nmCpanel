@@ -27,7 +27,7 @@
             "userConfig": {
                 "fn": "onLaunch",
                 "implHandler": [
-                    "MyApp.app.spike={};",
+                    "MyApp.app.spike={};  // Spike module",
                     "MyApp.app.spike.panel=this.getSpikeChartPanel();",
                     "MyApp.app.spike.panelHeight=MyApp.app.spike.panel.getHeight();",
                     "MyApp.app.spike.panelWidth=MyApp.app.spike.panel.getWidth();",
@@ -36,7 +36,7 @@
                     "MyApp.app.spike.data=null; //This is given value in loadSpikeData",
                     "MyApp.app.spike.mode=0;// 0 means candle, uncorrected",
                     "",
-                    "this.loadSpikeData();",
+                    "this.loadSpikeData(MyApp.app.spike);",
                     ""
                 ]
             },
@@ -50,20 +50,23 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
                 "fn": "loadSpikeData",
                 "implHandler": [
-                    "MyApp.app.spike.panel.setLoading(true);",
+                    "module.panel.setLoading(true);",
                     "",
                     "Ext.Ajax.request({",
-                    "    url: '/nmdb/uncorrected/group/all/all/'+ MyApp.app.spike.N_points,",
+                    "    url: '/nmdb/uncorrected/group/all/all/'+ module.N_points,",
                     "    success: function(response){",
                     "        var text = response.responseText;",
                     "        data=Ext.JSON.decode(text);",
                     "        data[0] = [].concat(data[0], [[Date.now(), null, null, null, null]]);  //  TODO make the server do this with the last data present in the database",
-                    "        MyApp.app.spike.data=data;",
-                    "        this.initSpikeChart();",
+                    "        module.data=data;",
+                    "        this.initSpikeChart(module);",
                     "        this.initSpikeChannelChart();",
-                    "        MyApp.app.spike.panel.setLoading(false);",
+                    "        module.panel.setLoading(false);",
                     "    },",
                     "    scope: this",
                     "});"
@@ -80,77 +83,20 @@
             "codeClass": null,
             "userConfig": {
                 "N_points": 0,
+                "designer|params": [
+                    "module"
+                ],
                 "fn": "initSpikeChart",
                 "implHandler": [
-                    "var data=MyApp.app.spike.data;",
-                    "var panel=MyApp.app.spike.panel;",
-                    "var panelChannel=MyApp.app.spike.panelChannels;",
-                    "var N_points=MyApp.app.spike.N_points;",
-                    "",
-                    "var yAxisPressHeight=100;",
-                    "var yAxisOhclHeight=MyApp.app.spike.panelHeight -yAxisPressHeight -165; //The 165 cant be changed",
+                    "var yAxisPressHeight=100;  // You can change only this one.",
+                    "var yAxisOhclHeight=module.panelHeight -yAxisPressHeight -165; //The 165 cant be changed",
                     "var yAxisOhclTop=yAxisPressHeight +50; //The 50 cant be changed",
                     "",
-                    "",
-                    "function LineOrOhcl(start, finish){",
-                    "    if ((finish-start)/60<=N_points*4+4)",
-                    "            return true; //Line",
-                    "    return false; //Ohcl",
-                    "}",
-                    "",
-                    "function updateMode(start, finish){",
-                    "    if (LineOrOhcl(start, finish) && MyApp.app.spike.mode<3)",
-                    "        MyApp.app.spike.mode +=3;",
-                    "",
-                    "    if (!LineOrOhcl(start, finish) && MyApp.app.spike.mode>=3)",
-                    "        MyApp.app.spike.mode -=3;",
-                    "}",
-                    "",
-                    "var aux_scope=this;",
-                    "function getLineData(start, finish){",
-                    "    Ext.Ajax.request({",
-                    "        url: '/nmdb/uncorrected/raw/'+start+'/'+finish,",
-                    "        success: function(response){",
-                    "            var text = response.responseText;",
-                    "            data=Ext.JSON.decode(text);",
-                    "",
-                    "            MyApp.app.data=data;  //  TODO remove",
-                    "            MyApp.app.spike.data=data;",
-                    "            MyApp.app.IsCandle = false;",
-                    "            Ext.ComponentQuery.query('#Chart2Button')[0].enable(true);",
-                    "            this.updateSeries();",
-                    "",
-                    "            chart.hideLoading();",
-                    "            chart.hideLoading();",
-                    "",
-                    "        },",
-                    "        scope: aux_scope",
-                    "    });",
-                    "",
-                    "}",
-                    "",
-                    "function getOhclData(start, finish){",
-                    "    Ext.Ajax.request({",
-                    "        url:'/nmdb/uncorrected/group/'+start+'/'+finish+'/'+N_points,",
-                    "        success: function(response){",
-                    "            var text = response.responseText;",
-                    "            data=Ext.JSON.decode(text);",
-                    "            MyApp.app.data=data;  //  TODO remove",
-                    "            MyApp.app.spike.data=data;",
-                    "            MyApp.app.IsCandle = true;",
-                    "            Ext.ComponentQuery.query('#Chart2Button')[0].disable(true);",
-                    "            this.updateSeries();",
-                    "",
-                    "            chart.hideLoading();",
-                    "            chart.hideLoading();",
-                    "        },",
-                    "        scope: aux_scope",
-                    "    });",
-                    "}",
+                    "var aux_scope=this; //  TODO. There must be better way",
                     "",
                     "var chart = new Highcharts.StockChart({",
                     "            chart: {",
-                    "                renderTo: panel.getEl().dom,",
+                    "                renderTo: module.panel.getEl().dom,",
                     "                zoomType: 'x'",
                     "            },",
                     "",
@@ -178,15 +124,11 @@
                     "                        start=Math.round(event.min/1000);",
                     "                        finish=Math.round(event.max/1000);",
                     "",
-                    "                        updateMode(start, finish);",
-                    "                        if (LineOrOhcl(start, finish)){",
-                    "                            getLineData(start, finish);",
-                    "                        }else{",
-                    "                            getOhclData(start,finish);",
-                    "                        }",
+                    "                        aux_scope.updateMode(start, finish, module);",
+                    "                        aux_scope.updateData(start, finish, module);                ",
                     "                    }",
                     "\t\t\t\t},",
-                    "\t\t\t\tminRange: 0.75*(N_points)/*one Min*/*60*1000,",
+                    "\t\t\t\tminRange: 0.75*(module.N_points)/*one Min*/*60*1000,",
                     "                ordinal: false",
                     "\t\t\t},",
                     "",
@@ -240,7 +182,7 @@
                     "            series:  [{",
                     "\t\t\t\tname : 'Uncorrected',\t\t\t\t//0",
                     "\t\t\t\ttype : 'candlestick',",
-                    "\t\t\t\tdata : data[0],",
+                    "\t\t\t\tdata : module.data[0],",
                     "\t\t\t\tdataGrouping: {",
                     "\t\t\t\t\tenabled: false",
                     "\t\t\t\t}",
@@ -281,7 +223,7 @@
                     "\t\t\t\tname : 'Pressure',\t\t\t\t\t//6",
                     "\t\t\t\tvisible : true,",
                     "\t\t\t\tyAxis: 1,",
-                    "\t\t\t\tdata : data[3],",
+                    "\t\t\t\tdata : module.data[3],",
                     "\t\t\t\tdataGrouping: {",
                     "\t\t\t\t\tenabled: false",
                     "\t\t\t\t}",
@@ -289,7 +231,7 @@
                     "});",
                     "",
                     "MyApp.app.chart=chart;  //  TODO remove",
-                    "MyApp.app.spike.chart=chart;"
+                    "module.chart=chart;"
                 ]
             },
             "configAlternates": {
@@ -303,6 +245,139 @@
                     "type": "string"
                 }
             ]
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, end, N_points"
+                ],
+                "fn": "LineOrOhcl",
+                "implHandler": [
+                    "if ((finish-start)/60<=N_points*4+4)",
+                    "            return true; //Line",
+                    "    return false; //Ohcl"
+                ]
+            },
+            "designerId": "da68100a-5c0b-4dd7-9a1e-6651fa6f5335"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, finish, module"
+                ],
+                "fn": "updateMode",
+                "implHandler": [
+                    "if (this.LineOrOhcl(start, finish, module.N_points) && module.mode<3)",
+                    "        module.mode +=3;",
+                    "",
+                    "    if (!this.LineOrOhcl(start, finish, module.N_points) && module.mode>=3)",
+                    "        module.mode -=3;"
+                ]
+            },
+            "designerId": "cc5edeeb-c63a-4e04-a2a4-115aad06c325"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "series, module"
+                ],
+                "fn": "changeSeries",
+                "implHandler": [
+                    "if(module.mode>=3)",
+                    "    series +=3;",
+                    "module.mode=series;",
+                    "this.updateSeries(module);"
+                ]
+            },
+            "designerId": "e86907c6-a536-45ad-8bc3-47cd9544f3a5"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "updateSeries",
+                "implHandler": [
+                    "from_data=module.mode%3;",
+                    "module.chart.series[0].setData([]);",
+                    "module.chart.series[1].setData([]);",
+                    "module.chart.series[2].setData([]);",
+                    "module.chart.series[3].setData([]);",
+                    "module.chart.series[4].setData([]);",
+                    "module.chart.series[5].setData([]);",
+                    "module.chart.series[6].setData(module.data[3]);",
+                    "",
+                    "module.chart.series[module.mode].setData(module.data[from_data]);"
+                ]
+            },
+            "designerId": "d85de4bb-952d-45ae-9b70-95bb74ec5471"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, finish, module"
+                ],
+                "fn": "updateData",
+                "implHandler": [
+                    "var my_url=null;",
+                    "if (this.LineOrOhcl(start, finish, module.N_points)){",
+                    "    my_url='/nmdb/uncorrected/raw/'+start+'/'+finish;",
+                    "    Ext.ComponentQuery.query('#Chart2Button')[0].enable(true);",
+                    "}else{",
+                    "    my_url='/nmdb/uncorrected/group/'+start+'/'+finish+'/'+module.N_points;",
+                    "    Ext.ComponentQuery.query('#Chart2Button')[0].disable(true);",
+                    "}",
+                    "",
+                    "",
+                    "Ext.Ajax.request({",
+                    "        url: my_url,",
+                    "        success: function(response){",
+                    "            var text = response.responseText;",
+                    "            data=Ext.JSON.decode(text);",
+                    "",
+                    "            module.data=data;        ",
+                    "            this.updateSeries(module);",
+                    "",
+                    "            module.chart.hideLoading();",
+                    "            module.chart.hideLoading();",
+                    "",
+                    "        },",
+                    "        scope: this",
+                    "    });",
+                    ""
+                ]
+            },
+            "designerId": "e30f8b30-0c46-481b-837a-5de0973dc324"
         },
         {
             "type": "basicfunction",
@@ -505,30 +580,6 @@
                 ]
             },
             "designerId": "b344ac78-d987-4b48-8483-8b373793dbc4"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "fn": "updateSeries",
-                "implHandler": [
-                    "from_data=MyApp.app.spike.mode%3;",
-                    "MyApp.app.spike.chart.series[0].setData([]);",
-                    "MyApp.app.spike.chart.series[1].setData([]);",
-                    "MyApp.app.spike.chart.series[2].setData([]);",
-                    "MyApp.app.spike.chart.series[3].setData([]);",
-                    "MyApp.app.spike.chart.series[4].setData([]);",
-                    "MyApp.app.spike.chart.series[5].setData([]);",
-                    "MyApp.app.spike.chart.series[6].setData(MyApp.app.spike.data[3]);",
-                    "",
-                    "MyApp.app.spike.chart.series[MyApp.app.spike.mode].setData(MyApp.app.spike.data[from_data]);"
-                ]
-            },
-            "designerId": "d85de4bb-952d-45ae-9b70-95bb74ec5471"
         },
         {
             "type": "controllerref",

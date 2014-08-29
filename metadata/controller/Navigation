@@ -37,7 +37,7 @@
                     "            this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeChannelChartPanel());",
                     "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').hide(true);",
                     "            Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').hide(true);",
-                    "            ",
+                    "",
                     "                MyApp.app.chartChannels.showLoading('Loading data from server...');",
                     "                Ext.Ajax.request({",
                     "                    url: '/nmdadb/rawdata/'+Math.round(MyApp.app.chart.xAxis[0].min/1000)+'/'+Math.round(MyApp.app.chart.xAxis[0].max/1000),",
