@@ -6,13 +6,13 @@
     },
     "codeClass": null,
     "userConfig": {
-        "IsCandle": true,
-        "IsCorrEffic": false,
-        "IsCorrPress": false,
-        "IsUncorrected": true,
+        "IsCorrEffic": null,
+        "IsCorrPress": null,
+        "IsUncorrected": null,
         "controllers": [
             "Spike",
-            "Navigation"
+            "Navigation",
+            "SpikeCorr"
         ],
         "models": [
             "RevisitedDataSet",
@@ -53,11 +53,6 @@
         {
             "group": "(Custom Properties)",
             "name": "IsCorrEffic",
-            "type": "string"
-        },
-        {
-            "group": "(Custom Properties)",
-            "name": "IsCandle",
             "type": "string"
         }
     ],
