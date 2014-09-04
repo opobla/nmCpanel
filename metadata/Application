@@ -9,7 +9,8 @@
         "controllers": [
             "Spike",
             "Navigation",
-            "SpikeCorr"
+            "SpikeCorr",
+            "ChannelStats"
         ],
         "models": [
             "RevisitedDataSet",

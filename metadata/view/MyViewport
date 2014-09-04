@@ -899,6 +899,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "itemId": "ChannelStats",
                         "title": "ChannelStats"
                     },
                     "designerId": "274fa513-725b-4413-a38c-96a34fc6e694",
@@ -919,20 +920,6 @@
                                 "scope": "me"
                             },
                             "designerId": "bd3fd1c4-d85f-432d-aa26-2af928ed509b"
-                        },
-                        {
-                            "type": "Ext.form.Label",
-                            "reference": {
-                                "name": "dockedItems",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "dock": "top",
-                                "margin": "20 10 0 0",
-                                "text": "Search for Time Interval"
-                            },
-                            "designerId": "f35347b9-f64d-41ff-be68-12992af0c14b"
                         },
                         {
                             "type": "Ext.form.FieldContainer",
@@ -1075,7 +1062,12 @@
                                                 ],
                                                 "fn": "handler",
                                                 "implHandler": [
-                                                    "Ext.ComponentQuery.query('#ChannelStatsPanel')[0].setTitle('Channel stats: From '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourFrom').getRawValue()+' to '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourTo').getRawValue());",
+                                                    "start=Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStats').down('#ChannelStatsIntervalSearch').down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStats').down('#ChannelStatsIntervalSearch').down('#IntervalHourFrom').getRawValue();",
+                                                    "finish=Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStats').down('#ChannelStatsIntervalSearch').down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStats').down('#ChannelStatsIntervalSearch').down('#IntervalHourTo').getRawValue();",
+                                                    "MyApp.app.getController(\"ChannelStats\").searchInterval(start, finish, MyApp.app.channStats);",
+                                                    "",
+                                                    "",
+                                                    "/*Ext.ComponentQuery.query('#ChannelStatsPanel')[0].setTitle('Channel stats: From '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourFrom').getRawValue()+' to '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourTo').getRawValue());",
                                                     "",
                                                     "Ext.ComponentQuery.query('#ChannelStatsGrid')[0].store.load({",
                                                     "    url: '/nmdadb/channel/stats/'+Math.floor(this.getTimestamp(Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourFrom').getRawValue())/1000)+'/'+Math.floor(this.getTimestamp(Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#ChannelStatsIntervalSearch')[0].down('#IntervalHourTo').getRawValue())/1000),",
@@ -1094,7 +1086,7 @@
                                                     "        MyApp.app.chartChannelStats.series[1].setData(line);",
                                                     "    },",
                                                     "    scope: this",
-                                                    "});",
+                                                    "});*/",
                                                     "",
                                                     ""
                                                 ]
