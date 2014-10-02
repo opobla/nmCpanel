@@ -571,6 +571,12 @@
                 "implHandler": [
                     "start=Math.floor(MyApp.app.getController(\"Spike\").getTimestamp(start)/1000);",
                     "finish=Math.floor(MyApp.app.getController(\"Spike\").getTimestamp(finish)/1000);",
+                    "",
+                    "if(finish-start >= 60*60*24*32){",
+                    "    alert('Maximum of one month');",
+                    "    return;",
+                    "}",
+                    "",
                     "var my_url='/nmdadb/channel/stats/'+start+'/'+finish;",
                     "",
                     "module.gridStats.store.load({",
