@@ -752,6 +752,11 @@
                 ],
                 "fn": "searchInterval",
                 "implHandler": [
+                    "if (start >= finish){",
+                    "    alert('Bad interval...');",
+                    "    return;",
+                    "}",
+                    "",
                     "module.chart.xAxis[0].setExtremes(",
                     "\t\t\t\t\tthis.getTimestamp(start),",
                     "\t\t\t\t\tthis.getTimestamp(finish));"
