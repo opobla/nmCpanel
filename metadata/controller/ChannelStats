@@ -453,7 +453,7 @@
                     "    chart: {",
                     "        renderTo: module.panelChartHistogramRelative.getEl().dom",
                     "    },",
-                    "    xAxis: {labels: {   formatter: function () {return this.value-40+'%';}}",
+                    "    xAxis: {labels: {   formatter: function () {return (this.value-40)*5;}}",
                     "",
                     "    },",
                     "    tooltip:{enabled: false},",
