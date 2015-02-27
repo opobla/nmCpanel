@@ -7,7 +7,7 @@
     "codeClass": null,
     "userConfig": {
         "designer|userClassName": "js",
-        "url": "http://code.highcharts.com/stock/highstock.js"
+        "url": "http://code.highcharts.com/stock/2.0.4/highstock.js"
     },
     "designerId": "3ff23b76-efea-4769-86ff-9369306f042a"
 }
