@@ -42,25 +42,7 @@
                     "",
                     "this.initStatsChart(MyApp.app.channStats);",
                     "this.loadHistogramData(MyApp.app.channStats);",
-                    "this.loadHistogramRelativeData(MyApp.app.channStats);",
-                    "",
-                    "",
-                    "/*",
-                    "MyApp.app.spikeCorr.panel=this.getSpikeCorrChartPanel();",
-                    "MyApp.app.spikeCorr.panelHeight=MyApp.app.spikeCorr.panel.getHeight();",
-                    "MyApp.app.spikeCorr.panelWidth=MyApp.app.spikeCorr.panel.getWidth();",
-                    "MyApp.app.spikeCorr.N_points=Math.round(MyApp.app.spikeCorr.panelWidth/4);",
-                    "MyApp.app.spikeCorr.data=null; //This is given value in loadSpikeData",
-                    "MyApp.app.spikeCorr.mode=0;// 0 means candle, uncorrected",
-                    "MyApp.app.spikeCorr.letter=65;  //ASCII 'A'",
-                    "MyApp.app.spikeCorr.grid=Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid');",
-                    "",
-                    "MyApp.app.spikeCorr.panelGrid=Ext.ComponentQuery.query('#SpikeCorrGridPanel')[0];",
-                    "MyApp.app.spikeCorr.panelChannels=MyApp.app.spike.panelChannels;",
-                    "MyApp.app.spikeCorr.chartChannels=MyApp.app.spike.chartChannels;",
-                    "",
-                    "this.loadSpikeCorrData(MyApp.app.spikeCorr);",
-                    "*/",
+                    "//this.loadHistogramRelativeData(MyApp.app.channStats);",
                     ""
                 ]
             },
@@ -622,6 +604,7 @@
                     "    scope: this",
                     "});",
                     "",
+                    "/*",
                     "var my_url='/nmdadb/channel/histogramRelative/'+start+'/'+finish;",
                     "module.panelChartHistogramRelative.setLoading(true);",
                     "Ext.Ajax.request({",
@@ -637,7 +620,8 @@
                     "        module.panelChartHistogramRelative.setLoading(false);",
                     "    },",
                     "    scope: this",
-                    "});"
+                    "});",
+                    "*/"
                 ]
             },
             "designerId": "75118154-2ae5-42ac-8b82-8abb7a5e0aab"
