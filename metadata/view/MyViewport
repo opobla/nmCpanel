@@ -20,10 +20,8 @@
             },
             "codeClass": null,
             "userConfig": {
-                "height": 72,
-                "html": [
-                    "norte"
-                ],
+                "height": 52,
+                "html": null,
                 "layout": "fit",
                 "layout|region": "north"
             },
@@ -1115,37 +1113,6 @@
                                     ]
                                 }
                             ]
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "title": "OtherModule"
-                    },
-                    "designerId": "0984fb71-f0a5-48e5-a42f-84e4c7719655",
-                    "cn": [
-                        {
-                            "type": "basiceventbinding",
-                            "reference": {
-                                "name": "listeners",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "fn": "onPanelBeforeExpand21",
-                                "implHandler": [
-                                    "Ext.History.add('OtherModule');"
-                                ],
-                                "name": "beforeexpand",
-                                "scope": "me"
-                            },
-                            "designerId": "df7944eb-28ef-4c91-a4fc-5c8beb7fc404"
                         }
                     ]
                 }
