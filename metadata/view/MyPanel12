@@ -44,8 +44,9 @@
                     "codeClass": null,
                     "userConfig": {
                         "container|align": "stretch",
+                        "designer|displayName": null,
                         "layout": "hbox",
-                        "title": "Tab 1"
+                        "title": "Stats"
                     },
                     "designerId": "21f7e591-1726-48af-9c7f-8ba1bc8551fe",
                     "cn": [
@@ -187,8 +188,9 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "designer|displayName": null,
                         "layout": "fit",
-                        "title": "Tab 2"
+                        "title": "Histogram"
                     },
                     "designerId": "0dcf8b67-4f5e-49e7-9757-ad6cf088d3e3",
                     "cn": [
@@ -213,44 +215,6 @@
                             },
                             "codeClass": null,
                             "designerId": "fae4e6f0-8fe3-4e8c-810b-472199b4dfbb"
-                        }
-                    ]
-                },
-                {
-                    "type": "Ext.panel.Panel",
-                    "reference": {
-                        "name": "items",
-                        "type": "array"
-                    },
-                    "codeClass": null,
-                    "userConfig": {
-                        "layout": "fit",
-                        "title": "Tab 3"
-                    },
-                    "designerId": "39196328-b8f5-4cca-a464-9e3f687bd8e6",
-                    "cn": [
-                        {
-                            "type": "Ext.panel.Panel",
-                            "reference": {
-                                "name": "items",
-                                "type": "array"
-                            },
-                            "codeClass": null,
-                            "userConfig": {
-                                "itemId": "ChannelStatsChartHistogramRelative",
-                                "layout": null,
-                                "title": null
-                            },
-                            "designerId": "d8417696-fbcf-4c58-8419-1c3b60aebd9d"
-                        },
-                        {
-                            "type": "Ext.tab.Tab",
-                            "reference": {
-                                "name": "tabConfig",
-                                "type": "object"
-                            },
-                            "codeClass": null,
-                            "designerId": "cf488687-ff89-4222-8068-eb2f1e113104"
                         }
                     ]
                 }

@@ -36,7 +36,7 @@
                     "//MyApp.app.channStats.histogramRelativeData=null;",
                     "",
                     "",
-                    "this.getChannelStatsPanel().items.items[0].setActiveTab(2);",
+                    "//this.getChannelStatsPanel().items.items[0].setActiveTab(2);",
                     "this.getChannelStatsPanel().items.items[0].setActiveTab(1);",
                     "this.getChannelStatsPanel().items.items[0].setActiveTab(0);",
                     "",
