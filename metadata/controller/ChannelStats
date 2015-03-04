@@ -210,7 +210,7 @@
                     "            enabled: false",
                     "        }",
                     "    },{",
-                    "        name : 'Avverage Line',\t\t\t\t//1",
+                    "        name : 'Average Line',\t\t\t\t//1",
                     "        type : 'line',",
                     "        data : line,",
                     "        dataGrouping: {",

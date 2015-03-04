@@ -15,7 +15,7 @@
         "height": 250,
         "itemId": "ChannelStatsPanel",
         "layout": "hbox",
-        "margin": null,
+        "margin": "0 0 0 3",
         "title": null,
         "width": 400
     },
