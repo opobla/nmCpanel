@@ -452,6 +452,53 @@
             "designerId": "875b8fcd-73ca-4fa0-ac3b-020c83958b6e"
         },
         {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showSpikeCorr",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeCorrChartPanel().up());",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').show(true);",
+                    "",
+                    "if (!MyApp.app.spikeCorr)",
+                    "    MyApp.app.getController(\"SpikeCorr\").Launch();",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "7f2eda92-4b74-43b7-be42-ea545b74d2a8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showSpikeChannel",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spikeCorr.panelChannels);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').hide(true);",
+                    "MyApp.app.getController(\"Spike\").updateChannelData(MyApp.app.spikeCorr);",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "44e47bb4-92fa-4e09-9bcf-5bd1d3bc45f3"
+        },
+        {
             "type": "controllerref",
             "reference": {
                 "name": "items",
@@ -463,6 +510,19 @@
                 "selector": "#SpikeCorrChartPanel"
             },
             "designerId": "dbdefdb6-61a2-4a3b-86dc-8d355e531b3a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "navigationPanel",
+                "selector": "#NavigationPanel"
+            },
+            "designerId": "60c7949c-3c52-445d-9950-509e5045a931"
         }
     ]
 }

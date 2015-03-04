@@ -627,6 +627,23 @@
             "designerId": "75118154-2ae5-42ac-8b82-8abb7a5e0aab"
         },
         {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showChannStats",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getChannelStatsPanel());",
+                    "if(!MyApp.app.channStats)",
+                    "    MyApp.app.getController(\"ChannelStats\").Launch();"
+                ]
+            },
+            "designerId": "5cac0fc6-b6e9-448c-aa58-682090513d3f"
+        },
+        {
             "type": "controllerref",
             "reference": {
                 "name": "items",
@@ -638,6 +655,19 @@
                 "selector": "#ChannelStatsPanel"
             },
             "designerId": "9d791695-69ce-4d56-b97e-3b0b2295d4ee"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "navigationPanel",
+                "selector": "#NavigationPanel"
+            },
+            "designerId": "bee6ff38-1d3d-48eb-b140-eadf2819af9f"
         }
     ]
 }

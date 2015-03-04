@@ -773,6 +773,41 @@
             "designerId": "37b209b0-597b-472f-88da-f0c1a8d8b529"
         },
         {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showSpike",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spike.panel);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').show(true);"
+                ]
+            },
+            "designerId": "87c2eae4-0d0c-4f50-a604-76050bd84087"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showSpikeChannel",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spike.panelChannels);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').hide(true);",
+                    "this.updateChannelData(MyApp.app.spike);"
+                ]
+            },
+            "designerId": "02600a88-35a7-4e8b-9a5a-4587ac77792a"
+        },
+        {
             "type": "controllerref",
             "reference": {
                 "name": "items",
@@ -797,6 +832,19 @@
                 "selector": "#SpikeChannelChartPanel"
             },
             "designerId": "f9b8c75d-677d-4a81-b4ad-0c9447c2a79d"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "navigationPanel",
+                "selector": "#NavigationPanel"
+            },
+            "designerId": "2890a22f-c051-498d-b181-9d0dbc7606bc"
         }
     ]
 }
