@@ -422,7 +422,8 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand1",
                                 "implHandler": [
-                                    "MyApp.app.getController(\"Spike\").showSpike();"
+                                    "//MyApp.app.getController(\"Spike\").showSpike();",
+                                    "Ext.History.add('Spike');"
                                 ],
                                 "name": "beforeexpand",
                                 "scope": "me"
@@ -454,7 +455,8 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand",
                                 "implHandler": [
-                                    "MyApp.app.getController(\"SpikeCorr\").showSpikeCorr(MyApp.app.spikeCorr);"
+                                    "//MyApp.app.getController(\"SpikeCorr\").showSpikeCorr(MyApp.app.spikeCorr);",
+                                    "Ext.History.add('SpikeCorr');"
                                 ],
                                 "name": "beforeexpand",
                                 "scope": "me"
@@ -862,7 +864,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "itemId": "ChannelStats",
+                        "itemId": "ChannelStatsControls",
                         "title": "ChannelStats"
                     },
                     "designerId": "274fa513-725b-4413-a38c-96a34fc6e694",
@@ -877,7 +879,8 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand2",
                                 "implHandler": [
-                                    "MyApp.app.getController(\"ChannelStats\").showChannStats();"
+                                    "//MyApp.app.getController(\"ChannelStats\").showChannStats();",
+                                    "Ext.History.add('ChannelStats');"
                                 ],
                                 "name": "beforeexpand",
                                 "scope": "me"
@@ -1124,8 +1127,8 @@
                         "type": "array"
                     },
                     "codeClass": null,
-                    "designerId": "fb531fbd-9fe6-467d-849d-d8cd1e666ea6",
-                    "masterInstanceId": "38444cf2-8afa-41a2-8d3f-4e9a6f406c7d"
+                    "designerId": "eb74f8b2-df6a-481b-9506-6e516ea804a9",
+                    "masterInstanceId": "bb9e7b96-d32d-47f3-b9aa-17dc88a37540"
                 },
                 {
                     "type": "linkedinstance",
@@ -1134,8 +1137,8 @@
                         "type": "array"
                     },
                     "codeClass": null,
-                    "designerId": "eb74f8b2-df6a-481b-9506-6e516ea804a9",
-                    "masterInstanceId": "bb9e7b96-d32d-47f3-b9aa-17dc88a37540"
+                    "designerId": "6f2cbe61-0b63-4397-98e4-dea651625e69",
+                    "masterInstanceId": "aefa3fca-101f-41ac-bd1a-ca9e9d3501e8"
                 },
                 {
                     "type": "linkedinstance",

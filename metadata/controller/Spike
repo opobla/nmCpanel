@@ -18,14 +18,14 @@
     ],
     "cn": [
         {
-            "type": "fixedfunction",
+            "type": "basicfunction",
             "reference": {
                 "name": "items",
                 "type": "array"
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onLaunch",
+                "fn": "Launch",
                 "implHandler": [
                     "MyApp.app.spike={};  // Spike module",
                     "MyApp.app.spike.panel=this.getSpikeChartPanel();",
@@ -41,7 +41,7 @@
                     ""
                 ]
             },
-            "designerId": "cae7e7c1-7fa5-49d9-aae4-a0c378dd6cc8"
+            "designerId": "1fbd1c2d-8cde-48b2-908f-5698ef272799"
         },
         {
             "type": "basicfunction",
@@ -65,7 +65,7 @@
                     "        data=Ext.JSON.decode(text);",
                     "        module.data=data;",
                     "        this.initSpikeChart(module);",
-                    "        this.initSpikeChannelChart();",
+                    "        this.initSpikeChannelChart(module);",
                     "        module.panel.setLoading(false);",
                     "    },",
                     "    scope: this",
@@ -450,6 +450,9 @@
             },
             "codeClass": null,
             "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
                 "fn": "initSpikeChannelChart",
                 "implHandler": [
                     "/**",
@@ -499,9 +502,9 @@
                     "});",
                     "",
                     "var series = null;",
-                    "var panel= MyApp.app.spike.panelChannels;",
-                    "var height= MyApp.app.spike.panelHeight;",
-                    "var width= MyApp.app.spike.panelWidth;",
+                    "var panel= module.panelChannels;",
+                    "var height= module.panelHeight;",
+                    "var width= module.panelWidth;",
                     "",
                     "var chartChannels = new Highcharts.StockChart({",
                     "    chart: {",
@@ -684,8 +687,7 @@
                     "    }]",
                     "});",
                     "",
-                    "MyApp.app.chartChannels=chartChannels;  //  TODO remove",
-                    "MyApp.app.spike.chartChannels=chartChannels;"
+                    "module.chartChannels=chartChannels;"
                 ]
             },
             "designerId": "b344ac78-d987-4b48-8483-8b373793dbc4"
@@ -782,9 +784,13 @@
             "userConfig": {
                 "fn": "showSpike",
                 "implHandler": [
-                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spike.panel);",
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeChartPanel());",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').show(true);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').show(true);"
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').expand();",
+                    "",
+                    "if (!MyApp.app.spike)",
+                    "    MyApp.app.getController(\"Spike\").Launch();"
                 ]
             },
             "designerId": "87c2eae4-0d0c-4f50-a604-76050bd84087"

@@ -31,8 +31,9 @@
                     "MyApp.app.spikeCorr.grid=Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid');",
                     "",
                     "MyApp.app.spikeCorr.panelGrid=Ext.ComponentQuery.query('#SpikeCorrGridPanel')[0];",
-                    "MyApp.app.spikeCorr.panelChannels=MyApp.app.spike.panelChannels;",
-                    "MyApp.app.spikeCorr.chartChannels=MyApp.app.spike.chartChannels;",
+                    "",
+                    "MyApp.app.spikeCorr.panelChannels=this.getSpikeCorrChannelChartPanel();",
+                    "MyApp.app.spikeCorr.chartChannels=null;",
                     "",
                     "this.loadSpikeCorrData(MyApp.app.spikeCorr);",
                     ""
@@ -62,6 +63,7 @@
                     "        data=Ext.JSON.decode(text);",
                     "        module.data=data;",
                     "        this.initSpikeCorrChart(module);",
+                    "        MyApp.app.getController(\"Spike\").initSpikeChannelChart(module);",
                     "        module.panel.setLoading(false);",
                     "    },",
                     "    scope: this",
@@ -465,6 +467,7 @@
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').show(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').show(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').expand();",
                     "",
                     "if (!MyApp.app.spikeCorr)",
                     "    MyApp.app.getController(\"SpikeCorr\").Launch();",
@@ -523,6 +526,19 @@
                 "selector": "#NavigationPanel"
             },
             "designerId": "60c7949c-3c52-445d-9950-509e5045a931"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "SpikeCorrChannelChartPanel",
+                "selector": "#SpikeCorrChannelChartPanel"
+            },
+            "designerId": "6785fc41-fab5-4edf-84ba-963ec41f8ee1"
         }
     ]
 }

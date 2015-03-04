@@ -1,0 +1,18 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "mypanel27",
+        "designer|userClassName": "MyPanel27",
+        "height": null,
+        "itemId": "SpikeCorrChannelChartPanel",
+        "margin": "0 0 0 3",
+        "title": null,
+        "width": null
+    },
+    "designerId": "aefa3fca-101f-41ac-bd1a-ca9e9d3501e8"
+}

@@ -31,22 +31,116 @@
                     "MyApp.app.channStats.chartHistogram=null;",
                     "MyApp.app.channStats.histogramData=null;",
                     "",
-                    "MyApp.app.channStats.panelChartHistogramRelative=this.getChannelStatsPanel().down('#ChannelStatsChartHistogramRelative');",
-                    "MyApp.app.channStats.chartHistogramRelative=null;",
-                    "MyApp.app.channStats.histogramRelativeData=null;",
+                    "//MyApp.app.channStats.panelChartHistogramRelative=this.getChannelStatsPanel().down('#ChannelStatsChartHistogramRelative');",
+                    "//MyApp.app.channStats.chartHistogramRelative=null;",
+                    "//MyApp.app.channStats.histogramRelativeData=null;",
                     "",
                     "",
                     "this.getChannelStatsPanel().items.items[0].setActiveTab(2);",
                     "this.getChannelStatsPanel().items.items[0].setActiveTab(1);",
                     "this.getChannelStatsPanel().items.items[0].setActiveTab(0);",
                     "",
-                    "this.initStatsChart(MyApp.app.channStats);",
+                    "this.loadStatsData(MyApp.app.channStats);",
                     "this.loadHistogramData(MyApp.app.channStats);",
                     "//this.loadHistogramRelativeData(MyApp.app.channStats);",
                     ""
                 ]
             },
             "designerId": "3ae33637-7e09-45b6-9557-d90edb139222"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "loadStatsData",
+                "implHandler": [
+                    "module.panelChartStats.setLoading(true);",
+                    "module.gridStats.store.load({",
+                    "    url:'/nmdadb/channel/stats/default/default',",
+                    "    callback: function(records, operation, success) {",
+                    "        this.initStatsChart(MyApp.app.channStats);",
+                    "        module.panelChartStats.setLoading(false);",
+                    "    },",
+                    "    scope: this",
+                    "});",
+                    ""
+                ]
+            },
+            "designerId": "1c74560d-c60d-4d1e-98e2-d51a0d4dfcca"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "loadHistogramData",
+                "implHandler": [
+                    "module.panelChartHistogram.setLoading(true);",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: 'http://localhost:8080/nmdadb/channel/histogram/default/default',",
+                    "    success: function(response){",
+                    "        var text = response.responseText;",
+                    "        data=Ext.JSON.decode(text);",
+                    "        /*for (i = 0; i < data.length; i++) {",
+                    "            data[i].push(data[i][data[i].length-1]);",
+                    "        }*/",
+                    "        module.histogramData=data;",
+                    "        this.initHistogramChart(module);",
+                    "        module.panelChartHistogram.setLoading(false);",
+                    "    },",
+                    "    scope: this",
+                    "});"
+                ]
+            },
+            "designerId": "85f50e3c-a8bf-4348-83ce-f2ae9f916646"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "loadHistogramRelativeData",
+                "implHandler": [
+                    "module.panelChartHistogramRelative.setLoading(true);",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: 'http://localhost:8080/nmdadb/channel/histogramRelative/default/default',",
+                    "    success: function(response){",
+                    "        var text = response.responseText;",
+                    "        data=Ext.JSON.decode(text);",
+                    "        //",
+                    "        for (i = 0; i < data.length; i++) {",
+                    "            data[i].push(data[i][data[i].length-1]);",
+                    "        }",
+                    "        module.histogramRelativeData=data;",
+                    "        this.initHistogramRelativeChart(module);",
+                    "        module.panelChartHistogramRelative.setLoading(false);",
+                    "    },",
+                    "    scope: this",
+                    "});"
+                ]
+            },
+            "designerId": "82db25ee-7a96-430e-bdd6-5bc1fefb41cb"
         },
         {
             "type": "basicfunction",
@@ -127,73 +221,6 @@
                 ]
             },
             "designerId": "da6a3fc1-122e-49c6-afa6-5b903b6e4ba6"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "module"
-                ],
-                "fn": "loadHistogramData",
-                "implHandler": [
-                    "module.panelChartHistogram.setLoading(true);",
-                    "",
-                    "Ext.Ajax.request({",
-                    "    url: 'http://localhost:8080/nmdadb/channel/histogram/default/default',",
-                    "    success: function(response){",
-                    "        var text = response.responseText;",
-                    "        data=Ext.JSON.decode(text);",
-                    "        /*for (i = 0; i < data.length; i++) {",
-                    "            data[i].push(data[i][data[i].length-1]);",
-                    "        }*/",
-                    "        module.histogramData=data;",
-                    "        this.initHistogramChart(module);",
-                    "        module.panelChartHistogram.setLoading(false);",
-                    "    },",
-                    "    scope: this",
-                    "});"
-                ]
-            },
-            "designerId": "85f50e3c-a8bf-4348-83ce-f2ae9f916646"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "module"
-                ],
-                "fn": "loadHistogramRelativeData",
-                "implHandler": [
-                    "module.panelChartHistogramRelative.setLoading(true);",
-                    "",
-                    "Ext.Ajax.request({",
-                    "    url: 'http://localhost:8080/nmdadb/channel/histogramRelative/default/default',",
-                    "    success: function(response){",
-                    "        var text = response.responseText;",
-                    "        data=Ext.JSON.decode(text);",
-                    "        //",
-                    "        for (i = 0; i < data.length; i++) {",
-                    "            data[i].push(data[i][data[i].length-1]);",
-                    "        }",
-                    "        module.histogramRelativeData=data;",
-                    "        this.initHistogramRelativeChart(module);",
-                    "        module.panelChartHistogramRelative.setLoading(false);",
-                    "    },",
-                    "    scope: this",
-                    "});"
-                ]
-            },
-            "designerId": "82db25ee-7a96-430e-bdd6-5bc1fefb41cb"
         },
         {
             "type": "basicfunction",
@@ -637,6 +664,7 @@
                 "fn": "showChannStats",
                 "implHandler": [
                     "this.getNavigationPanel().getLayout().setActiveItem(this.getChannelStatsPanel());",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').expand();",
                     "if(!MyApp.app.channStats)",
                     "    MyApp.app.getController(\"ChannelStats\").Launch();"
                 ]

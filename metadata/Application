@@ -23,11 +23,11 @@
         ],
         "views": [
             "MyViewport",
-            "MyPanel5",
             "MyPanel6",
             "MyPanel3",
             "MyPanel4",
-            "MyPanel12"
+            "MyPanel12",
+            "MyPanel27"
         ]
     },
     "configAlternates": {
