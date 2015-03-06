@@ -354,7 +354,7 @@
                             "userConfig": {
                                 "layout|flex": 1,
                                 "margin": "5 5 5 5",
-                                "text": "Close"
+                                "text": "Hide"
                             },
                             "designerId": "00e507de-4db9-46e5-a907-3ddb38639b29",
                             "cn": [
@@ -372,7 +372,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeCorr\").closeGrid(MyApp.app.spikeCorr);"
+                                            "MyApp.app.getController(\"SpikeCorr\").showHideGrid(MyApp.app.spikeCorr);"
                                         ]
                                     },
                                     "designerId": "23826e9f-3640-4540-814d-76488e316f23"

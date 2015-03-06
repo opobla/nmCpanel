@@ -404,12 +404,16 @@
                 "designer|params": [
                     "module"
                 ],
-                "fn": "showGrid",
+                "fn": "showHideGrid",
                 "implHandler": [
-                    "module.panelGrid.setHeight(300);",
-                    "module.panelGrid.setWidth(600);",
-                    "module.panelGrid.setPosition(module.panelWidth -600 -10, 10);",
-                    "module.panelGrid.show();"
+                    "if (!module.panelGrid.isVisible()){",
+                    "    module.panelGrid.setHeight(300);",
+                    "    module.panelGrid.setWidth(600);",
+                    "    module.panelGrid.setPosition(module.panelWidth -600 -10, 10);",
+                    "    module.panelGrid.show();",
+                    "}else{",
+                    "    module.panelGrid.hide();",
+                    "}"
                 ]
             },
             "designerId": "5935e3fe-4f6b-4342-b835-421abc185b4d"
@@ -434,24 +438,6 @@
                 ]
             },
             "designerId": "f653afe0-f751-4c60-93c2-9ace0a2590d3"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "module"
-                ],
-                "fn": "closeGrid",
-                "implHandler": [
-                    "module.panelGrid.hide();"
-                ]
-            },
-            "designerId": "875b8fcd-73ca-4fa0-ac3b-020c83958b6e"
         },
         {
             "type": "basicfunction",
