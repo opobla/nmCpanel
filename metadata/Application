@@ -17,6 +17,9 @@
             "ChannelStats"
         ],
         "name": "MyApp",
+        "requires": [
+            "Ext.window.MessageBox"
+        ],
         "stores": [
             "RevisitedData",
             "ChannelStats"

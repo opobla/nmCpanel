@@ -385,7 +385,7 @@
                     "",
                     "",
                     "        //Alert everything went ok..",
-                    "        alert(text.messege);",
+                    "        Ext.Msg.alert(text.messege);",
                     "    },",
                     "    scope: this",
                     "});"
