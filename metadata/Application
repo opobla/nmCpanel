@@ -10,7 +10,8 @@
             "Spike",
             "Navigation",
             "SpikeCorr",
-            "ChannelStats"
+            "ChannelStats",
+            "HighStockExtend"
         ],
         "models": [
             "RevisitedDataSet",
