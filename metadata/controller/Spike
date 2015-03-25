@@ -28,16 +28,30 @@
                 "fn": "Launch",
                 "implHandler": [
                     "MyApp.app.spike={};  // Spike module",
-                    "MyApp.app.spike.panel=this.getSpikeChartPanel();",
-                    "MyApp.app.spike.panelHeight=MyApp.app.spike.panel.getHeight();",
-                    "MyApp.app.spike.panelWidth=MyApp.app.spike.panel.getWidth();",
-                    "MyApp.app.spike.N_points=Math.round(MyApp.app.spike.panelWidth/4);",
-                    "MyApp.app.spike.panelChannels=this.getSpikeChannelChartPanel();",
-                    "MyApp.app.spike.data=null; //This is given value in loadSpikeData",
-                    "MyApp.app.spike.mode=0;// 0 means candle, uncorrected",
-                    "MyApp.app.spike.chart=null;",
                     "",
-                    "this.loadSpikeData(MyApp.app.spike);",
+                    "MyApp.app.spike.candle={};",
+                    "MyApp.app.spike.candle.panel=this.getSpikeChartPanel();",
+                    "MyApp.app.spike.candle.height=MyApp.app.spike.candle.panel.getHeight();",
+                    "MyApp.app.spike.candle.width=MyApp.app.spike.candle.panel.getWidth();",
+                    "MyApp.app.spike.candle.N_points=Math.round(MyApp.app.spike.candle.width/4);",
+                    "MyApp.app.spike.candle.mode=0;",
+                    "",
+                    "/*Modes*/",
+                    "/*\t0-->\tcandle, uncorrected",
+                    "\t1-->\tcandle, pressure corrected",
+                    "    2-->\tcandle, efficiency corrected",
+                    "\t3-->\tline, uncorrected",
+                    "\t4-->\tline, pressure corrected",
+                    "    5-->\tline, efficiency corrected\t*/",
+                    "",
+                    "MyApp.app.spike.channel={};",
+                    "MyApp.app.spike.channel.panel=this.getSpikeChannelChartPanel();",
+                    "MyApp.app.spike.channel.height=MyApp.app.spike.candle.height;",
+                    "MyApp.app.spike.channel.width=MyApp.app.spike.candle.width;",
+                    "/*This panel is not expanded at this point so its weight and height are 0.*/",
+                    "/*Thats why we use the values fron the previos panel.*/",
+                    "",
+                    "this.loadInitialData(MyApp.app.spike);",
                     ""
                 ]
             },
@@ -54,19 +68,19 @@
                 "designer|params": [
                     "module"
                 ],
-                "fn": "loadSpikeData",
+                "fn": "loadInitialData",
                 "implHandler": [
-                    "module.panel.setLoading(true);",
+                    "module.candle.panel.setLoading(true);",
                     "",
                     "Ext.Ajax.request({",
-                    "    url: '/nmdb/original/group/all/all/'+ module.N_points,",
+                    "    url: '/nmdb/original/group/all/all/'+ module.candle.N_points,",
                     "    success: function(response){",
                     "        var text = response.responseText;",
-                    "        data=Ext.JSON.decode(text);",
-                    "        module.data=data;",
-                    "        this.initSpikeChart(module);",
-                    "        this.initSpikeChannelChart(module);",
-                    "        module.panel.setLoading(false);",
+                    "        var data=Ext.JSON.decode(text);",
+                    "        module.candle.data=data;",
+                    "        this.initCandleChart(module, this);",
+                    "        this.initChannelChart(module);",
+                    "        module.candle.panel.setLoading(false);",
                     "    },",
                     "    scope: this",
                     "});"
@@ -84,19 +98,18 @@
             "userConfig": {
                 "N_points": 0,
                 "designer|params": [
-                    "module"
+                    "module, aux_scope"
                 ],
-                "fn": "initSpikeChart",
+                "fn": "initCandleChart",
                 "implHandler": [
                     "var yAxisPressHeight=100;  // You can change only this one.",
-                    "var yAxisOhclHeight=module.panelHeight -yAxisPressHeight -165; //The 165 cant be changed",
+                    "var yAxisOhclHeight=module.candle.height -yAxisPressHeight -165; //The 165 cant be changed",
                     "var yAxisOhclTop=yAxisPressHeight +50; //The 50 cant be changed",
-                    "",
-                    "var aux_scope=this; //  TODO. There must be better way",
+                    "/*We hired magicians, they came up with this numbers*/",
                     "",
                     "var chart = new Highcharts.StockChart({",
                     "            chart: {",
-                    "                renderTo: module.panel.getEl().dom,",
+                    "                renderTo: module.candle.panel.getEl().dom,",
                     "                zoomType: 'x'",
                     "            },",
                     "",
@@ -120,22 +133,17 @@
                     "\t\t\txAxis : {",
                     "                events : {",
                     "                    afterSetExtremes : function(event){",
-                    "                        chart.showLoading('Loading data from server...');  //  TODO maybe the ExtJs setloading",
-                    "                        start=Math.round(event.min/1000);",
-                    "                        finish=Math.round(event.max/1000);",
-                    "",
-                    "                        aux_scope.updateMode(start, finish, module);",
-                    "                        aux_scope.updateData(start, finish, module);",
+                    "                        aux_scope.updateCandleData(event.min, event.max, module);",
                     "                    }",
                     "\t\t\t\t},",
-                    "\t\t\t\tminRange: 0.75*(module.N_points)/*one Min*/*60*1000,",
+                    "\t\t\t\tminRange: 0.75*(module.candle.N_points)/*one Min*/*60*1000,",
                     "                ordinal: false",
                     "\t\t\t},",
                     "",
                     "\t\t\tnavigator : {",
                     "                adaptToUpdatedData: false,",
                     "                series : {",
-                    "                    data : module.data[0]",
+                    "                    data : module.candle.data[0]",
                     "                }",
                     "            },",
                     "",
@@ -179,7 +187,7 @@
                     "            series:  [{",
                     "\t\t\t\tname : 'Uncorrected',\t\t\t\t//0",
                     "\t\t\t\ttype : 'candlestick',",
-                    "\t\t\t\tdata : module.data[0],",
+                    "\t\t\t\tdata : module.candle.data[0],",
                     "\t\t\t\tdataGrouping: {",
                     "\t\t\t\t\tenabled: false",
                     "\t\t\t\t}",
@@ -220,15 +228,14 @@
                     "\t\t\t\tname : 'Pressure',\t\t\t\t\t//6",
                     "\t\t\t\tvisible : true,",
                     "\t\t\t\tyAxis: 1,",
-                    "\t\t\t\tdata : module.data[3],",
+                    "\t\t\t\tdata : module.candle.data[3],",
                     "\t\t\t\tdataGrouping: {",
                     "\t\t\t\t\tenabled: false",
                     "\t\t\t\t}",
                     "\t\t\t}]",
                     "});",
                     "",
-                    "MyApp.app.chart=chart;  //  TODO remove",
-                    "module.chart=chart;"
+                    "module.candle.chart=chart;"
                 ]
             },
             "configAlternates": {
@@ -252,155 +259,15 @@
             "codeClass": null,
             "userConfig": {
                 "designer|params": [
-                    "start, end, N_points"
-                ],
-                "fn": "LineOrOhcl",
-                "implHandler": [
-                    "if ((finish-start)/60<=N_points*4+4)",
-                    "            return true; //Line",
-                    "    return false; //Ohcl"
-                ]
-            },
-            "designerId": "da68100a-5c0b-4dd7-9a1e-6651fa6f5335"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "start, finish, module"
-                ],
-                "fn": "updateMode",
-                "implHandler": [
-                    "if (this.LineOrOhcl(start, finish, module.N_points) && module.mode<3)",
-                    "        module.mode +=3;",
-                    "",
-                    "    if (!this.LineOrOhcl(start, finish, module.N_points) && module.mode>=3)",
-                    "        module.mode -=3;"
-                ]
-            },
-            "designerId": "cc5edeeb-c63a-4e04-a2a4-115aad06c325"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "series, module"
-                ],
-                "fn": "changeSeries",
-                "implHandler": [
-                    "if(module.mode>=3)",
-                    "    series +=3;",
-                    "module.mode=series;",
-                    "this.updateSeries(module);"
-                ]
-            },
-            "designerId": "e86907c6-a536-45ad-8bc3-47cd9544f3a5"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
                     "module"
                 ],
-                "fn": "updateSeries",
+                "fn": "initChannelChart",
                 "implHandler": [
-                    "from_data=module.mode%3;",
-                    "module.chart.series[0].setData([]);",
-                    "module.chart.series[1].setData([]);",
-                    "module.chart.series[2].setData([]);",
-                    "module.chart.series[3].setData([]);",
-                    "module.chart.series[4].setData([]);",
-                    "module.chart.series[5].setData([]);",
-                    "module.chart.series[6].setData(module.data[3]);",
-                    "",
-                    "module.chart.series[module.mode].setData(module.data[from_data]);"
-                ]
-            },
-            "designerId": "d85de4bb-952d-45ae-9b70-95bb74ec5471"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "start, finish, module"
-                ],
-                "fn": "updateData",
-                "implHandler": [
-                    "var my_url=null;",
-                    "if (this.LineOrOhcl(start, finish, module.N_points)){",
-                    "    my_url='/nmdb/original/raw/'+start+'/'+finish;",
-                    "    Ext.ComponentQuery.query('#Chart2Button')[0].enable(true);",
-                    "}else{",
-                    "    my_url='/nmdb/original/group/'+start+'/'+finish+'/'+module.N_points;",
-                    "    Ext.ComponentQuery.query('#Chart2Button')[0].disable(true);",
-                    "}",
-                    "",
-                    "",
-                    "Ext.Ajax.request({",
-                    "        url: my_url,",
-                    "        success: function(response){",
-                    "            var text = response.responseText;",
-                    "            data=Ext.JSON.decode(text);",
-                    "",
-                    "            module.data=data;",
-                    "            this.updateSeries(module);",
-                    "",
-                    "            module.chart.hideLoading();",
-                    "            module.chart.hideLoading();",
-                    "",
-                    "        },",
-                    "        scope: this",
-                    "    });",
-                    ""
-                ]
-            },
-            "designerId": "e30f8b30-0c46-481b-837a-5de0973dc324"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "module"
-                ],
-                "fn": "initSpikeChannelChart",
-                "implHandler": [
-                    "",
-                    "",
-                    "var series = null;",
-                    "var panel= module.panelChannels;",
-                    "var height= module.panelHeight;",
-                    "var width= module.panelWidth;",
-                    "",
-                    "var chartChannels = new Highcharts.StockChart({",
+                    "var chart = new Highcharts.StockChart({",
                     "    chart: {",
-                    "        renderTo: panel.getEl().dom,",
-                    "        height: height,",
-                    "        width: width",
+                    "        renderTo: module.channel.panel.getEl().dom,",
+                    "        height: module.channel.height,",
+                    "        width: module.channel.width",
                     "    },",
                     "    title: {",
                     "        text: 'Hi there Spikes'",
@@ -432,7 +299,7 @@
                     "    },",
                     "    series: [{",
                     "        name: 'ch01',",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -441,7 +308,7 @@
                     "    {",
                     "        name: 'ch02',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -449,7 +316,7 @@
                     "    },{",
                     "        name: 'ch03',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -457,7 +324,7 @@
                     "    },{",
                     "        name: 'ch04',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -465,7 +332,7 @@
                     "    },{",
                     "        name: 'ch05',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -473,7 +340,7 @@
                     "    },{",
                     "        name: 'ch06',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -481,7 +348,7 @@
                     "    },{",
                     "        name: 'ch07',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -489,7 +356,7 @@
                     "    },{",
                     "        name: 'ch08',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -497,7 +364,7 @@
                     "    },{",
                     "        name: 'ch09',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -505,7 +372,7 @@
                     "    },{",
                     "        name: 'ch10',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -513,7 +380,7 @@
                     "    },{",
                     "        name: 'ch11',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -521,7 +388,7 @@
                     "    },{",
                     "        name: 'ch12',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -529,7 +396,7 @@
                     "    },{",
                     "        name: 'ch13',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -537,7 +404,7 @@
                     "    },{",
                     "        name: 'ch14',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -545,7 +412,7 @@
                     "    },{",
                     "        name: 'ch15',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -553,7 +420,7 @@
                     "    },{",
                     "        name: 'ch16',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -561,7 +428,7 @@
                     "    },{",
                     "        name: 'ch17',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -569,7 +436,7 @@
                     "    },{",
                     "        name: 'ch18',",
                     "",
-                    "        data: series,",
+                    "        data: null,",
                     "        tooltip: {",
                     "            valueDecimals: 0",
                     "        },",
@@ -577,10 +444,146 @@
                     "    }]",
                     "});",
                     "",
-                    "module.chartChannels=chartChannels;"
+                    "module.channel.chart=chart;"
                 ]
             },
             "designerId": "b344ac78-d987-4b48-8483-8b373793dbc4"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, finish, N_points"
+                ],
+                "fn": "LineOrOhcl",
+                "implHandler": [
+                    "if ((finish-start)/60<=N_points*4+4)",
+                    "            return true; //Line",
+                    "    return false; //Ohcl"
+                ]
+            },
+            "designerId": "da68100a-5c0b-4dd7-9a1e-6651fa6f5335"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, finish, module"
+                ],
+                "fn": "updateMode",
+                "implHandler": [
+                    "if (this.LineOrOhcl(start, finish, module.candle.N_points) && module.candle.mode<3)",
+                    "        module.candle.mode +=3;",
+                    "",
+                    "    if (!this.LineOrOhcl(start, finish, module.candle.N_points) && module.candle.mode>=3)",
+                    "        module.candle.mode -=3;"
+                ]
+            },
+            "designerId": "cc5edeeb-c63a-4e04-a2a4-115aad06c325"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "series, module"
+                ],
+                "fn": "changeSeries",
+                "implHandler": [
+                    "if(module.candle.mode>=3)",
+                    "    series +=3;",
+                    "module.candle.mode=series;",
+                    "this.updateSeries(module);"
+                ]
+            },
+            "designerId": "e86907c6-a536-45ad-8bc3-47cd9544f3a5"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "updateSeries",
+                "implHandler": [
+                    "from_data=module.candle.mode%3;",
+                    "module.candle.chart.series[0].setData([]);",
+                    "module.candle.chart.series[1].setData([]);",
+                    "module.candle.chart.series[2].setData([]);",
+                    "module.candle.chart.series[3].setData([]);",
+                    "module.candle.chart.series[4].setData([]);",
+                    "module.candle.chart.series[5].setData([]);",
+                    "module.candle.chart.series[6].setData(module.candle.data[3]);",
+                    "",
+                    "module.candle.chart.series[module.candle.mode].setData(module.candle.data[from_data]);"
+                ]
+            },
+            "designerId": "d85de4bb-952d-45ae-9b70-95bb74ec5471"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, finish, module"
+                ],
+                "fn": "updateCandleData",
+                "implHandler": [
+                    "start=Math.round(start/1000);",
+                    "finish=Math.round(finish/1000);",
+                    "this.updateMode(start, finish, module);",
+                    "",
+                    "var my_url=null;",
+                    "if (this.LineOrOhcl(start, finish, module.candle.N_points)){",
+                    "    my_url='/nmdb/original/raw/'+start+'/'+finish;",
+                    "    Ext.ComponentQuery.query('#Chart2Button')[0].enable(true);",
+                    "}else{",
+                    "    my_url='/nmdb/original/group/'+start+'/'+finish+'/'+module.candle.N_points;",
+                    "    Ext.ComponentQuery.query('#Chart2Button')[0].disable(true);",
+                    "}",
+                    "",
+                    "",
+                    "module.candle.chart.showLoading('Loading data from server...');",
+                    "Ext.Ajax.request({",
+                    "        url: my_url,",
+                    "        success: function(response){",
+                    "            var text = response.responseText;",
+                    "            var data=Ext.JSON.decode(text);",
+                    "",
+                    "            module.candle.data=data;",
+                    "            this.updateSeries(module);",
+                    "",
+                    "            module.candle.chart.hideLoading();",
+                    "        },",
+                    "        scope: this",
+                    "    });",
+                    ""
+                ]
+            },
+            "designerId": "e30f8b30-0c46-481b-837a-5de0973dc324"
         },
         {
             "type": "basicfunction",
@@ -595,24 +598,22 @@
                 ],
                 "fn": "updateChannelData",
                 "implHandler": [
-                    "module.chartChannels.showLoading('Loading data from server...');",
-                    "start=Math.round(module.chart.xAxis[0].min/1000);",
-                    "finish=Math.round(module.chart.xAxis[0].max/1000);",
-                    "my_url='/nmdadb/rawdata/'+start+'/'+finish;",
+                    "var start=Math.round(module.candle.chart.xAxis[0].min/1000);",
+                    "var finish=Math.round(module.candle.chart.xAxis[0].max/1000);",
+                    "var my_url='/nmdadb/rawdata/'+start+'/'+finish;",
                     "",
+                    "module.channel.chart.showLoading('Loading data from server...');",
                     "Ext.Ajax.request({",
                     "    url: my_url,",
                     "    success: function(response){",
                     "        var text = response.responseText;",
-                    "        data=Ext.JSON.decode(text);",
+                    "        var data=Ext.JSON.decode(text);",
                     "",
                     "        for (var i=0;i<=17;i++){",
-                    "            module.chartChannels.series[i].setData(data[i]);",
+                    "            module.channel.chart.series[i].setData(data[i]);",
                     "        }",
                     "",
-                    "        module.chartChannels.hideLoading();",
-                    "        module.chartChannels.hideLoading();",
-                    "",
+                    "        module.channel.chart.hideLoading();",
                     "    },",
                     "    scope: this",
                     "});"
@@ -638,7 +639,7 @@
                     "    return;",
                     "}",
                     "",
-                    "module.chart.xAxis[0].setExtremes(",
+                    "module.candle.chart.xAxis[0].setExtremes(",
                     "\t\t\t\t\tthis.getTimestamp(start),",
                     "\t\t\t\t\tthis.getTimestamp(finish));"
                 ]
@@ -672,7 +673,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "showSpike",
+                "fn": "showCandle",
                 "implHandler": [
                     "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeChartPanel());",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').show(true);",
@@ -693,9 +694,9 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "showSpikeChannel",
+                "fn": "showChannel",
                 "implHandler": [
-                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spike.panelChannels);",
+                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spike.channel.panel);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').hide(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').hide(true);",
                     "this.updateChannelData(MyApp.app.spike);"

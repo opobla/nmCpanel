@@ -28,7 +28,7 @@
                     "var onHistoryChange=function (hash){",
                     "    switch(hash){",
                     "        case 'Spike':",
-                    "            MyApp.app.getController(\"Spike\").showSpike();",
+                    "            MyApp.app.getController(\"Spike\").showCandle();",
                     "            break;",
                     "        case 'SpikeCorr':",
                     "            MyApp.app.getController(\"SpikeCorr\").showSpikeCorr();",

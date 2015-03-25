@@ -85,7 +85,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"Spike\").showSpike();"
+                                            "MyApp.app.getController(\"Spike\").showCandle();"
                                         ]
                                     },
                                     "designerId": "4726fb5b-916f-4bca-99fb-3fa910c94f8e"
@@ -123,7 +123,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"Spike\").showSpikeChannel();"
+                                            "MyApp.app.getController(\"Spike\").showChannel();"
                                         ]
                                     },
                                     "designerId": "7272e284-6dd8-4b4e-aa18-c272b6ebb30b"
