@@ -9,7 +9,7 @@
         "controllers": [
             "Spike",
             "Navigation",
-            "SpikeCorr",
+            "SpikeCorrected",
             "ChannelStats",
             "HighStockExtend"
         ],

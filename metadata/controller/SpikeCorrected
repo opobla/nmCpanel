@@ -1,0 +1,390 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "SpikeCorrected"
+    },
+    "designerId": "88eb544a-095c-436d-8e4c-22c346073b8b",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "Launch",
+                "implHandler": [
+                    "MyApp.app.spikeCorr={};",
+                    "",
+                    "MyApp.app.spikeCorr.candle={};",
+                    "MyApp.app.spikeCorr.candle.panel=this.getSpikeCorrChartPanel();",
+                    "MyApp.app.spikeCorr.candle.height=MyApp.app.spikeCorr.candle.panel.getHeight();",
+                    "MyApp.app.spikeCorr.candle.width=MyApp.app.spikeCorr.candle.panel.getWidth();",
+                    "MyApp.app.spikeCorr.candle.N_points=Math.round(MyApp.app.spikeCorr.candle.width/4);",
+                    "MyApp.app.spikeCorr.candle.mode=0;",
+                    "MyApp.app.spikeCorr.candle.letter=65;  //ASCII 'A'",
+                    "MyApp.app.spikeCorr.candle.grid=Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid');",
+                    "MyApp.app.spikeCorr.candle.panelGrid=Ext.ComponentQuery.query('#SpikeCorrGridPanel')[0];",
+                    "",
+                    "MyApp.app.spikeCorr.channel={};",
+                    "MyApp.app.spikeCorr.channel.panel=this.getSpikeCorrChannelChartPanel();",
+                    "MyApp.app.spikeCorr.channel.height=MyApp.app.spikeCorr.candle.height;",
+                    "MyApp.app.spikeCorr.channel.width=MyApp.app.spikeCorr.candle.width;",
+                    "/*This panel is not expanded at this point so its weight and height are 0.*/",
+                    "/*Thats why we use the values fron the previos panel.*/",
+                    "",
+                    "this.loadInitialData(MyApp.app.spikeCorr);",
+                    ""
+                ]
+            },
+            "designerId": "d9a4e42d-b2cd-4a3b-83c5-fec94f3302f1"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "loadInitialData",
+                "implHandler": [
+                    "module.candle.panel.setLoading(true);",
+                    "",
+                    "Ext.Ajax.request({",
+                    "    url: '/nmdb/revised/group/all/all/'+ module.candle.N_points,",
+                    "    success: function(response){",
+                    "        var text = response.responseText;",
+                    "        var data=Ext.JSON.decode(text);",
+                    "        module.candle.data=data;",
+                    "        MyApp.app.getController(\"Spike\").initCandleChart(module, this);",
+                    "        MyApp.app.getController(\"Spike\").initChannelChart(module);",
+                    "        this.ExtendCandleChart(module);",
+                    "",
+                    "        module.candle.panel.setLoading(false);",
+                    "    },",
+                    "    scope: this",
+                    "});"
+                ]
+            },
+            "designerId": "4910221d-143c-44c4-a7bf-9d73e96ef01d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "ExtendCandleChart",
+                "implHandler": [
+                    "module.candle.chart.addSeries({",
+                    "    name : 'Flags',                    //8",
+                    "    type: 'flags',",
+                    "    data: null,",
+                    "    yAxis: 1,",
+                    "    shape: 'squarepin',",
+                    "    /*Todo. add id to this series and use it to refer to this series, not the magician 8 I'm using currently. */   ",
+                    "    width : 16});",
+                    "",
+                    "function click(event){",
+                    "    for (var i=0;i<module.candle.data[0].length;i++){",
+                    "        if (module.candle.data[0][i][0]==event.point.x){",
+                    "            break;",
+                    "        }",
+                    "    }",
+                    "    var ClickedData=[module.candle.data[0][i][0] , module.candle.data[0][i][1] , module.candle.data[1][i][1], module.candle.data[2][i][1] , module.candle.data[3][i][1]];",
+                    "    module.candle.chart.series[8].addPoint({x:event.point.x,title:String.fromCharCode(module.candle.letter)});",
+                    "",
+                    "    module.candle.chart.redraw();",
+                    "",
+                    "    module.candle.grid.store.add({",
+                    "        \"label\": String.fromCharCode(module.candle.letter),",
+                    "        \"start_date_time\": new Date(ClickedData[0]+new Date(ClickedData[0]).getTimezoneOffset()*60*1000),",
+                    "        \"un\": ClickedData[1],",
+                    "        \"ce\": ClickedData[2],",
+                    "        \"cp\": ClickedData[3],",
+                    "        \"pr\": ClickedData[4],",
+                    "        \"ver\": 0});",
+                    "",
+                    "    module.candle.letter+=1;",
+                    "    if(module.letter==91)module.candle.letter=97;",
+                    "    if(module.letter==123)module.candle.letter=65;",
+                    "}",
+                    "",
+                    "/*Add the click event to the line series...*/",
+                    "$(module.candle.chart.series[3]).on('click', click);",
+                    "$(module.candle.chart.series[4]).on('click', click);",
+                    "$(module.candle.chart.series[5]).on('click', click);",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "ac9cf11b-63e5-4bc0-a462-9d4c260dfa48"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "start, finish, module"
+                ],
+                "fn": "updateCandleData",
+                "implHandler": [
+                    "start=Math.round(start/1000);",
+                    "finish=Math.round(finish/1000);",
+                    "MyApp.app.getController(\"Spike\").updateMode(start, finish, module);",
+                    "",
+                    "var my_url=null;",
+                    "if (MyApp.app.getController(\"Spike\").LineOrOhcl(start, finish, module.candle.N_points)){",
+                    "    my_url='/nmdb/revised/raw/'+start+'/'+finish;",
+                    "    Ext.ComponentQuery.query('#CorrChart2Button')[0].enable(true);",
+                    "}else{",
+                    "    my_url='/nmdb/revised/group/'+start+'/'+finish+'/'+module.candle.N_points;",
+                    "    Ext.ComponentQuery.query('#CorrChart2Button')[0].disable(true);",
+                    "}",
+                    "",
+                    "module.candle.chart.showLoading('Loading data from server...');",
+                    "Ext.Ajax.request({",
+                    "        url: my_url,",
+                    "        success: function(response){",
+                    "            var text = response.responseText;",
+                    "            var data=Ext.JSON.decode(text);",
+                    "",
+                    "            module.candle.data=data;",
+                    "            MyApp.app.getController(\"Spike\").updateSeries(module);",
+                    "",
+                    "            module.candle.chart.hideLoading();",
+                    "",
+                    "        },",
+                    "        scope: this",
+                    "    });",
+                    ""
+                ]
+            },
+            "designerId": "4032a48d-67ae-437b-8100-7c6893828e80"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module, rowIndex"
+                ],
+                "fn": "removeFromGrid",
+                "implHandler": [
+                    "//First of all start getting a reference of the grid.",
+                    "var markedGrid=module.candle.grid;",
+                    "",
+                    "//Then get a reference of the tagSeries",
+                    "var tagSeries = module.candle.chart.series[8].data;",
+                    "",
+                    "//Find the tag in the tagSeries and remove it from the tagSeries",
+                    "for(x=0;x<tagSeries.length;x++){",
+                    "    if(tagSeries[x].title==markedGrid.store.getAt(rowIndex).data.label){",
+                    "        tagSeries[x].remove(true);",
+                    "        break;",
+                    "    }",
+                    "}",
+                    "",
+                    "//Finaly remove from the grids store.",
+                    "markedGrid.store.removeAt(rowIndex);"
+                ]
+            },
+            "designerId": "f4356ed4-e6d7-4cea-a060-b086c4add15c"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "submitGrid",
+                "implHandler": [
+                    "//Http post request to the specified url.",
+                    "//Post params ==> markedGrid data",
+                    "module.candle.grid.store.sync({",
+                    "    url: '/nmdb/marknull',",
+                    "    //Actions we take when the request is successful.",
+                    "    success: function(response){",
+                    "        var text = response.operations[0].request.scope.reader.jsonData;",
+                    "",
+                    "        //Clear and refresh store ==> Expexted empty store..",
+                    "        module.candle.grid.store.clearData();",
+                    "        module.candle.grid.getView().refresh();",
+                    "",
+                    "        //Clear tags from the chart and refresh the chart with the new data",
+                    "        module.candle.chart.series[8].setData([]);",
+                    "        module.candle.chart.xAxis[0].setExtremes();",
+                    "        module.candle.letter=65;",
+                    "",
+                    "        //Alert everything went ok..",
+                    "        Ext.Msg.alert(text.messege);",
+                    "    },",
+                    "    scope: this",
+                    "});"
+                ]
+            },
+            "designerId": "b9b4ce9a-8c83-4f70-a864-97cd171d01a3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "showHideGrid",
+                "implHandler": [
+                    "if (!module.candle.panelGrid.isVisible()){",
+                    "    module.candle.panelGrid.setHeight(300);",
+                    "    module.candle.panelGrid.setWidth(600);",
+                    "    module.candle.panelGrid.setPosition(module.candle.width -600 -10, 10);",
+                    "    module.candle.panelGrid.show();",
+                    "}else{",
+                    "    module.candle.panelGrid.hide();",
+                    "}"
+                ]
+            },
+            "designerId": "5935e3fe-4f6b-4342-b835-421abc185b4d"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|params": [
+                    "module"
+                ],
+                "fn": "clearGrid",
+                "implHandler": [
+                    "module.candle.chart.series[8].setData([]);",
+                    "module.candle.grid.store.removeAll();",
+                    "module.candle.letter=65;",
+                    ""
+                ]
+            },
+            "designerId": "f653afe0-f751-4c60-93c2-9ace0a2590d3"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showCandle",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeCorrChartPanel().up());",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').expand();",
+                    "",
+                    "if (!MyApp.app.spikeCorr)",
+                    "   this.Launch();",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "7f2eda92-4b74-43b7-be42-ea545b74d2a8"
+        },
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "showChannel",
+                "implHandler": [
+                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spikeCorr.channel.panel);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').hide(true);",
+                    "MyApp.app.getController(\"Spike\").updateChannelData(MyApp.app.spikeCorr);",
+                    "",
+                    "",
+                    "",
+                    ""
+                ]
+            },
+            "designerId": "44e47bb4-92fa-4e09-9bcf-5bd1d3bc45f3"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "SpikeCorrChartPanel",
+                "selector": "#SpikeCorrChartPanel"
+            },
+            "designerId": "dbdefdb6-61a2-4a3b-86dc-8d355e531b3a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "navigationPanel",
+                "selector": "#NavigationPanel"
+            },
+            "designerId": "60c7949c-3c52-445d-9950-509e5045a931"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "SpikeCorrChannelChartPanel",
+                "selector": "#SpikeCorrChannelChartPanel"
+            },
+            "designerId": "6785fc41-fab5-4edf-84ba-963ec41f8ee1"
+        }
+    ]
+}

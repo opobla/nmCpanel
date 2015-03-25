@@ -422,7 +422,6 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand1",
                                 "implHandler": [
-                                    "//MyApp.app.getController(\"Spike\").showSpike();",
                                     "Ext.History.add('Spike');"
                                 ],
                                 "name": "beforeexpand",
@@ -455,8 +454,7 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand",
                                 "implHandler": [
-                                    "//MyApp.app.getController(\"SpikeCorr\").showSpikeCorr(MyApp.app.spikeCorr);",
-                                    "Ext.History.add('SpikeCorr');"
+                                    "Ext.History.add('SpikeCorrected');"
                                 ],
                                 "name": "beforeexpand",
                                 "scope": "me"
@@ -491,7 +489,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeCorr\").showSpikeCorr(MyApp.app.spikeCorr);"
+                                            "MyApp.app.getController(\"SpikeCorrected\").showCandle(MyApp.app.spikeCorr);"
                                         ]
                                     },
                                     "designerId": "e2ab2f1e-3a26-43a4-8792-b5728f478f84"
@@ -529,7 +527,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeCorr\").showSpikeChannel();"
+                                            "MyApp.app.getController(\"SpikeCorrected\").showChannel();"
                                         ]
                                     },
                                     "designerId": "5819ff2c-5bb8-422e-a5e0-6854f7ebec7d"
@@ -565,7 +563,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeCorr\").showHideGrid(MyApp.app.spikeCorr);"
+                                            "MyApp.app.getController(\"SpikeCorrected\").showHideGrid(MyApp.app.spikeCorr);"
                                         ]
                                     },
                                     "designerId": "8ab6e734-df79-491a-bf2a-8e02d7747e28"
@@ -879,7 +877,6 @@
                             "userConfig": {
                                 "fn": "onPanelBeforeExpand2",
                                 "implHandler": [
-                                    "//MyApp.app.getController(\"ChannelStats\").showChannStats();",
                                     "Ext.History.add('ChannelStats');"
                                 ],
                                 "name": "beforeexpand",

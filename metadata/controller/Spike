@@ -681,7 +681,7 @@
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').expand();",
                     "",
                     "if (!MyApp.app.spike)",
-                    "    MyApp.app.getController(\"Spike\").Launch();"
+                    "    this.Launch();"
                 ]
             },
             "designerId": "87c2eae4-0d0c-4f50-a604-76050bd84087"
