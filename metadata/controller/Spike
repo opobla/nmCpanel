@@ -78,7 +78,7 @@
                     "        var text = response.responseText;",
                     "        var data=Ext.JSON.decode(text);",
                     "        module.candle.data=data;",
-                    "        this.initCandleChart(module, this);",
+                    "        this.initCandleChart(module);",
                     "        this.initChannelChart(module);",
                     "        module.candle.panel.setLoading(false);",
                     "    },",
@@ -98,7 +98,7 @@
             "userConfig": {
                 "N_points": 0,
                 "designer|params": [
-                    "module, aux_scope"
+                    "module"
                 ],
                 "fn": "initCandleChart",
                 "implHandler": [
@@ -133,8 +133,8 @@
                     "\t\t\txAxis : {",
                     "                events : {",
                     "                    afterSetExtremes : function(event){",
-                    "                        aux_scope.updateCandleData(event.min, event.max, module);",
-                    "                    }",
+                    "                        this.updateCandleData(event.min, event.max, module);",
+                    "                    }.bind(this)",
                     "\t\t\t\t},",
                     "\t\t\t\tminRange: 0.75*(module.candle.N_points)/*one Min*/*60*1000,",
                     "                ordinal: false",
