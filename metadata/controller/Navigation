@@ -34,7 +34,7 @@
                     "            MyApp.app.getController(\"SpikeCorrected\").showCandle();",
                     "            break;",
                     "        case 'ChannelStats':",
-                    "            MyApp.app.getController(\"ChannelStats\").showChannStats();",
+                    "            MyApp.app.getController(\"ChannelStats\").showModule();",
                     "            break;",
                     "",
                     "        default:",

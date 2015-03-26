@@ -90,63 +90,6 @@
                 "designer|params": [
                     "module"
                 ],
-                "fn": "loadStatsData",
-                "implHandler": [
-                    "module.panelChartStats.setLoading(true);",
-                    "module.gridStats.store.load({",
-                    "    url:'/nmdadb/channel/stats/default/default',",
-                    "    callback: function(records, operation, success) {",
-                    "        this.initStatsChart(MyApp.app.channStats);",
-                    "        module.panelChartStats.setLoading(false);",
-                    "    },",
-                    "    scope: this",
-                    "});",
-                    ""
-                ]
-            },
-            "designerId": "1c74560d-c60d-4d1e-98e2-d51a0d4dfcca"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "module"
-                ],
-                "fn": "loadHistogramData",
-                "implHandler": [
-                    "module.panelChartHistogram.setLoading(true);",
-                    "",
-                    "Ext.Ajax.request({",
-                    "    url: 'http://localhost:8080/nmdadb/channel/histogram/default/default',",
-                    "    success: function(response){",
-                    "        var text = response.responseText;",
-                    "        data=Ext.JSON.decode(text);",
-                    "        module.histogramData=data;",
-                    "        this.initHistogramChart(module);",
-                    "        module.panelChartHistogram.setLoading(false);",
-                    "    },",
-                    "    scope: this",
-                    "});"
-                ]
-            },
-            "designerId": "85f50e3c-a8bf-4348-83ce-f2ae9f916646"
-        },
-        {
-            "type": "basicfunction",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "designer|params": [
-                    "module"
-                ],
                 "fn": "initStatsChart",
                 "implHandler": [
                     "var dataOHLC=[[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[],[]];",
@@ -418,7 +361,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "showChannStats",
+                "fn": "showModule",
                 "implHandler": [
                     "this.getNavigationPanel().getLayout().setActiveItem(this.getChannelStatsPanel());",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').expand();",
