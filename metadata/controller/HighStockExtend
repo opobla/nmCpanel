@@ -18,7 +18,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "fn": "onLaunch",
+                "designer|params": [
+                    "application"
+                ],
+                "fn": "init",
                 "implHandler": [
                     "//ZoomOut Events.",
                     "(function (H) {",
@@ -122,7 +125,7 @@
                     "}(Highcharts));"
                 ]
             },
-            "designerId": "36053131-9648-4fe3-8440-21e2883dc5f3"
+            "designerId": "cb064c7c-38bd-4d8f-bafa-d5d441af2c1f"
         }
     ]
 }
