@@ -10,10 +10,10 @@
         "container|defaultMargins": [
             "{\"top\":0,\"right\":0,\"bottom\":0,\"left\":0}"
         ],
-        "designer|userAlias": "mypanel12",
-        "designer|userClassName": "MyPanel12",
+        "designer|userAlias": "ChannelStats_Panel",
+        "designer|userClassName": "ChannelStats_Panel",
         "height": 250,
-        "itemId": "ChannelStatsPanel",
+        "itemId": "ChannelStats_Panel",
         "layout": "hbox",
         "margin": "0 0 0 3",
         "title": null,
@@ -58,7 +58,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "itemId": "ChannelStatsChartPanel",
+                                "itemId": "ChannelStats_Chart_Panel",
                                 "layout|flex": 1,
                                 "title": null
                             },
@@ -73,7 +73,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "forceFit": true,
-                                "itemId": "ChannelStatsGrid",
+                                "itemId": "ChannelStats_Grid_Panel",
                                 "layout|flex": 1,
                                 "store": "ChannelStats",
                                 "title": null
@@ -202,7 +202,7 @@
                             },
                             "codeClass": null,
                             "userConfig": {
-                                "itemId": "ChannelStatsChartHistogram",
+                                "itemId": "ChannelStats_Histogram_Panel",
                                 "title": null
                             },
                             "designerId": "9dca7c86-6d7d-4b1c-b125-540cf011c923"

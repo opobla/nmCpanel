@@ -24,15 +24,14 @@
                     "MyApp.app.channStats.stats={};",
                     "MyApp.app.channStats.histo={};",
                     "",
-                    "MyApp.app.channStats.stats.panelChart=this.getChannelStatsPanel().down('#ChannelStatsChartPanel');",
-                    "MyApp.app.channStats.stats.panelGrid=this.getChannelStatsPanel().down('#ChannelStatsGrid');",
-                    "MyApp.app.channStats.stats.grid=Ext.ComponentQuery.query('#ChannelStatsGrid')[0];",
+                    "MyApp.app.channStats.stats.panelChart=this.getChannelStats_Panel().down('#ChannelStats_Chart_Panel');",
+                    "MyApp.app.channStats.stats.grid=this.getChannelStats_Panel().down('#ChannelStats_Grid_Panel');",
                     "",
-                    "MyApp.app.channStats.histo.panel=this.getChannelStatsPanel().down('#ChannelStatsChartHistogram');",
+                    "MyApp.app.channStats.histo.panel=this.getChannelStats_Panel().down('#ChannelStats_Histogram_Panel');",
                     "",
                     "/*Expand the tabs, otherwise the width and height will be 0.*/",
-                    "this.getChannelStatsPanel().items.items[0].setActiveTab(1);",
-                    "this.getChannelStatsPanel().items.items[0].setActiveTab(0);",
+                    "this.getChannelStats_Panel().items.items[0].setActiveTab(1);",
+                    "this.getChannelStats_Panel().items.items[0].setActiveTab(0);",
                     "",
                     "this.loadInitialData(MyApp.app.channStats);"
                 ]
@@ -363,7 +362,7 @@
             "userConfig": {
                 "fn": "showModule",
                 "implHandler": [
-                    "this.getNavigationPanel().getLayout().setActiveItem(this.getChannelStatsPanel());",
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getChannelStats_Panel());",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').expand();",
                     "if(!MyApp.app.channStats)",
                     "    MyApp.app.getController(\"ChannelStats\").Launch();"
@@ -379,10 +378,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "ChannelStatsPanel",
-                "selector": "#ChannelStatsPanel"
+                "ref": "navigationPanel",
+                "selector": "#NavigationPanel"
             },
-            "designerId": "9d791695-69ce-4d56-b97e-3b0b2295d4ee"
+            "designerId": "bee6ff38-1d3d-48eb-b140-eadf2819af9f"
         },
         {
             "type": "controllerref",
@@ -392,10 +391,10 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "navigationPanel",
-                "selector": "#NavigationPanel"
+                "ref": "ChannelStats_Panel",
+                "selector": "#ChannelStats_Panel"
             },
-            "designerId": "bee6ff38-1d3d-48eb-b140-eadf2819af9f"
+            "designerId": "9441d1d7-631c-4907-b9ad-9f80c27a28ff"
         }
     ]
 }

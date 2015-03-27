@@ -30,7 +30,8 @@
             "Spike_Candle_Panel",
             "Spike_Channel_Panel",
             "SpikeRevised_Candle_Panel",
-            "SpikeRevised_Channel_Panel"
+            "SpikeRevised_Channel_Panel",
+            "ChannelStats_Panel"
         ]
     },
     "configAlternates": {
