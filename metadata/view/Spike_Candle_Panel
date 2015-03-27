@@ -8,8 +8,8 @@
     "userConfig": {
         "container|align": "stretch",
         "designer|userAlias": "mypanel6",
-        "designer|userClassName": "MyPanel6",
-        "itemId": "SpikeChartPanel",
+        "designer|userClassName": "Spike_Candle_Panel",
+        "itemId": "Spike_Candle_Panel",
         "layout": "hbox",
         "margin": "0 0 0 3",
         "title": null,

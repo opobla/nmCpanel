@@ -7,9 +7,9 @@
     "codeClass": null,
     "userConfig": {
         "designer|userAlias": "mypanel4",
-        "designer|userClassName": "MyPanel4",
+        "designer|userClassName": "Spike_Channel_Panel",
         "height": null,
-        "itemId": "SpikeChannelChartPanel",
+        "itemId": "Spike_Channel_Panel",
         "margin": "0 0 0 3",
         "title": null,
         "width": null

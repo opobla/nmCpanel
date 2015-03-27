@@ -30,7 +30,7 @@
                     "MyApp.app.spike={};  // Spike module",
                     "",
                     "MyApp.app.spike.candle={};",
-                    "MyApp.app.spike.candle.panel=this.getSpikeChartPanel();",
+                    "MyApp.app.spike.candle.panel=this.getSpike_Candle_Panel();",
                     "MyApp.app.spike.candle.height=MyApp.app.spike.candle.panel.getHeight();",
                     "MyApp.app.spike.candle.width=MyApp.app.spike.candle.panel.getWidth();",
                     "MyApp.app.spike.candle.N_points=Math.round(MyApp.app.spike.candle.width/4);",
@@ -45,7 +45,7 @@
                     "    5-->\tline, efficiency corrected\t*/",
                     "",
                     "MyApp.app.spike.channel={};",
-                    "MyApp.app.spike.channel.panel=this.getSpikeChannelChartPanel();",
+                    "MyApp.app.spike.channel.panel=this.getSpike_Channel_Panel();",
                     "MyApp.app.spike.channel.height=MyApp.app.spike.candle.height;",
                     "MyApp.app.spike.channel.width=MyApp.app.spike.candle.width;",
                     "/*This panel is not expanded at this point so its weight and height are 0.*/",
@@ -675,7 +675,7 @@
             "userConfig": {
                 "fn": "showCandle",
                 "implHandler": [
-                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeChartPanel());",
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpike_Candle_Panel());",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeIntervalSearch').show(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').down('#SpikeChoiceSeries').show(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeControls').expand();",
@@ -712,36 +712,36 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "SpikeChartPanel",
-                "selector": "#SpikeChartPanel"
-            },
-            "designerId": "72244de8-99cf-4b0c-b106-9ec157ad13e1"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "SpikeChannelChartPanel",
-                "selector": "#SpikeChannelChartPanel"
-            },
-            "designerId": "f9b8c75d-677d-4a81-b4ad-0c9447c2a79d"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
                 "ref": "navigationPanel",
                 "selector": "#NavigationPanel"
             },
             "designerId": "2890a22f-c051-498d-b181-9d0dbc7606bc"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "Spike_Candle_Panel",
+                "selector": "#Spike_Candle_Panel"
+            },
+            "designerId": "c0daf13d-b30a-423a-89d7-afe6d609376b"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "Spike_Channel_Panel",
+                "selector": "#Spike_Channel_Panel"
+            },
+            "designerId": "1c3efdfe-f9ba-4357-aae6-70793bec0639"
         }
     ]
 }

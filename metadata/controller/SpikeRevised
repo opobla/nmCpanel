@@ -336,7 +336,7 @@
             "userConfig": {
                 "fn": "showChannel",
                 "implHandler": [
-                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spikeCorr.channel.panel);",
+                    "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spikeRevised.channel.panel);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').hide(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').hide(true);",
                     "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').hide(true);",
