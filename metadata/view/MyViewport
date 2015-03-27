@@ -563,7 +563,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeRevised\").showHideGrid(MyApp.app.spikeRevised);"
+                                            "MyApp.app.getController(\"SpikeRevised\").showHideGrid();"
                                         ]
                                     },
                                     "designerId": "8ab6e734-df79-491a-bf2a-8e02d7747e28"
@@ -621,7 +621,7 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "MyApp.app.getController(\"Spike\").changeSeries(0, MyApp.app.spikeRevised);"
+                                                            "MyApp.app.getController(\"SpikeRevised\").changeSeries(0);"
                                                         ]
                                                     },
                                                     "designerId": "24aa9db8-d25a-44bd-bd22-3a7309dc6f9b"
@@ -655,7 +655,7 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "MyApp.app.getController(\"Spike\").changeSeries(1, MyApp.app.spikeRevised);"
+                                                            "MyApp.app.getController(\"SpikeRevised\").changeSeries(1);"
                                                         ]
                                                     },
                                                     "designerId": "9bcb46c3-f2f0-49de-ac12-5cee6f7d7aee"
@@ -689,7 +689,7 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "MyApp.app.getController(\"Spike\").changeSeries(2, MyApp.app.spikeRevised);"
+                                                            "MyApp.app.getController(\"SpikeRevised\").changeSeries(2);"
                                                         ]
                                                     },
                                                     "designerId": "73eeb916-b5a5-4c01-98b9-b4e3eeb69f8a"
@@ -843,7 +843,7 @@
                                                 "implHandler": [
                                                     "start=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalHourFrom').getRawValue();",
                                                     "finish=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalHourTo').getRawValue();",
-                                                    "MyApp.app.getController(\"Spike\").searchInterval(start, finish, MyApp.app.spikeRevised);"
+                                                    "MyApp.app.getController(\"SpikeRevised\").searchInterval(start, finish);"
                                                 ]
                                             },
                                             "designerId": "36610a03-e2b1-438b-8106-a083fb0eb80f"

@@ -241,7 +241,7 @@
                                                         ],
                                                         "fn": "handler",
                                                         "implHandler": [
-                                                            "MyApp.app.getController(\"SpikeRevised\").removeFromGrid(MyApp.app.spikeRevised, rowIndex);",
+                                                            "MyApp.app.getController(\"SpikeRevised\").removeFromGrid(rowIndex);",
                                                             "",
                                                             ""
                                                         ]
@@ -302,7 +302,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeRevised\").submitGrid(MyApp.app.spikeRevised);"
+                                            "MyApp.app.getController(\"SpikeRevised\").submitGrid();"
                                         ]
                                     },
                                     "designerId": "1a5ea4e9-5c90-42da-9452-50d7e4ac2c52"
@@ -337,7 +337,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeRevised\").clearGrid(MyApp.app.spikeRevised);"
+                                            "MyApp.app.getController(\"SpikeRevised\").clearGrid();"
                                         ]
                                     },
                                     "designerId": "0741fd1c-dfa6-444e-8206-81e146ff2a11"
@@ -372,7 +372,7 @@
                                         ],
                                         "fn": "handler",
                                         "implHandler": [
-                                            "MyApp.app.getController(\"SpikeRevised\").showHideGrid(MyApp.app.spikeRevised);"
+                                            "MyApp.app.getController(\"SpikeRevised\").showHideGrid();"
                                         ]
                                     },
                                     "designerId": "23826e9f-3640-4540-814d-76488e316f23"
