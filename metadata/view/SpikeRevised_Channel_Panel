@@ -6,10 +6,10 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|userAlias": "mypanel27",
-        "designer|userClassName": "MyPanel27",
+        "designer|userAlias": "SpikeRevised_Channel_Panel",
+        "designer|userClassName": "SpikeRevised_Channel_Panel",
         "height": null,
-        "itemId": "SpikeCorrChannelChartPanel",
+        "itemId": "SpikeRevised_Channel_Panel",
         "margin": "0 0 0 3",
         "title": null,
         "width": null

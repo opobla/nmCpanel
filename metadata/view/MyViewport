@@ -439,7 +439,7 @@
                     },
                     "codeClass": null,
                     "userConfig": {
-                        "itemId": "SpikeCorrControls",
+                        "itemId": "SpikeRevisedControls",
                         "title": "Spike Corr."
                     },
                     "designerId": "7113dcbd-25fa-4a20-a25f-f8b2505579e8",
@@ -471,7 +471,7 @@
                             "userConfig": {
                                 "dock": "top",
                                 "margin": "5 0 0 0",
-                                "text": "Chart"
+                                "text": "Candle Chart"
                             },
                             "designerId": "79b26c10-3a09-492e-bdb2-f65917c4be1a",
                             "cn": [
@@ -507,9 +507,9 @@
                                 "allowDepress": false,
                                 "disabled": true,
                                 "dock": "top",
-                                "itemId": "CorrChart2Button",
+                                "itemId": "SpikeRevisedChannelChart",
                                 "margin": "5 0 0 0",
-                                "text": "Channels Chart"
+                                "text": "Channel Chart"
                             },
                             "designerId": "a643181b-43c9-46ff-a00e-7eba2cc41aaf",
                             "cn": [
@@ -543,7 +543,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "dock": "top",
-                                "itemId": "SpikeCorrSelPoints",
+                                "itemId": "SpikeRevisedShowGrid",
                                 "margin": "15 0 0 0",
                                 "text": "Selected Points"
                             },
@@ -579,7 +579,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "dock": "top",
-                                "itemId": "SpikeCorrChoiceSeries",
+                                "itemId": "SpikeRevisedChoiceSeries",
                                 "margin": "15 0 0 0",
                                 "text": "Choice a Series"
                             },
@@ -713,7 +713,7 @@
                                 "fieldLabel": "Label",
                                 "height": null,
                                 "hideLabel": true,
-                                "itemId": "SpikeCorrIntervalSearch",
+                                "itemId": "SpikeRevisedIntervalSearch",
                                 "layout": "vbox",
                                 "margin": "15 0 0 0",
                                 "width": 200
@@ -841,8 +841,8 @@
                                                 ],
                                                 "fn": "handler",
                                                 "implHandler": [
-                                                    "start=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalHourFrom').getRawValue();",
-                                                    "finish=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').down('#SpikeIntervalHourTo').getRawValue();",
+                                                    "start=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalHourFrom').getRawValue();",
+                                                    "finish=Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').down('#SpikeIntervalHourTo').getRawValue();",
                                                     "MyApp.app.getController(\"Spike\").searchInterval(start, finish, MyApp.app.spikeRevised);"
                                                 ]
                                             },
@@ -1101,7 +1101,7 @@
                         "type": "array"
                     },
                     "codeClass": null,
-                    "designerId": "eb74f8b2-df6a-481b-9506-6e516ea804a9",
+                    "designerId": "c92a5eb4-1725-4c2b-b1f0-ed0ab398ecd9",
                     "masterInstanceId": "bb9e7b96-d32d-47f3-b9aa-17dc88a37540"
                 },
                 {
@@ -1111,7 +1111,7 @@
                         "type": "array"
                     },
                     "codeClass": null,
-                    "designerId": "6f2cbe61-0b63-4397-98e4-dea651625e69",
+                    "designerId": "853089f2-c90f-4b1b-8488-45ff6c2dcf8f",
                     "masterInstanceId": "aefa3fca-101f-41ac-bd1a-ca9e9d3501e8"
                 },
                 {

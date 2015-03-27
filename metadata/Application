@@ -27,11 +27,10 @@
         ],
         "views": [
             "MyViewport",
-            "MyPanel6",
-            "MyPanel3",
-            "MyPanel4",
-            "MyPanel12",
-            "MyPanel27"
+            "Spike_Candle_Panel",
+            "Spike_Channel_Panel",
+            "SpikeRevised_Candle_Panel",
+            "SpikeRevised_Channel_Panel"
         ]
     },
     "configAlternates": {

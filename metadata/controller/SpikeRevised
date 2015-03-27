@@ -23,17 +23,18 @@
                     "MyApp.app.spikeRevised={};",
                     "",
                     "MyApp.app.spikeRevised.candle={};",
-                    "MyApp.app.spikeRevised.candle.panel=this.getSpikeCorrChartPanel();",
+                    "MyApp.app.spikeRevised.candle.panel=this.getSpikeRevised_Candle_Panel().down(\"#SpikeRevised_Candle_Chart_Panel\");",
                     "MyApp.app.spikeRevised.candle.height=MyApp.app.spikeRevised.candle.panel.getHeight();",
                     "MyApp.app.spikeRevised.candle.width=MyApp.app.spikeRevised.candle.panel.getWidth();",
                     "MyApp.app.spikeRevised.candle.N_points=Math.round(MyApp.app.spikeRevised.candle.width/4);",
                     "MyApp.app.spikeRevised.candle.mode=0;",
                     "MyApp.app.spikeRevised.candle.letter=65;  //ASCII 'A'",
-                    "MyApp.app.spikeRevised.candle.grid=Ext.ComponentQuery.query('#SpikeCorrPanel')[0].down('#MarkedGrid');",
-                    "MyApp.app.spikeRevised.candle.panelGrid=Ext.ComponentQuery.query('#SpikeCorrGridPanel')[0];",
+                    "MyApp.app.spikeRevised.candle.panelGrid=this.getSpikeRevised_Candle_Panel().down(\"#SpikeRevised_Candle_Grid_Panel\");",
+                    "MyApp.app.spikeRevised.candle.grid=MyApp.app.spikeRevised.candle.panelGrid.down('#SpikeRevised_MarkedGrid');",
+                    "",
                     "",
                     "MyApp.app.spikeRevised.channel={};",
-                    "MyApp.app.spikeRevised.channel.panel=this.getSpikeCorrChannelChartPanel();",
+                    "MyApp.app.spikeRevised.channel.panel=this.getSpikeRevised_Channel_Panel();",
                     "MyApp.app.spikeRevised.channel.height=MyApp.app.spikeRevised.candle.height;",
                     "MyApp.app.spikeRevised.channel.width=MyApp.app.spikeRevised.candle.width;",
                     "/*This panel is not expanded at this point so its weight and height are 0.*/",
@@ -157,10 +158,10 @@
                     "var my_url=null;",
                     "if (MyApp.app.getController(\"Spike\").LineOrOhcl(start, finish, module.candle.N_points)){",
                     "    my_url='/nmdb/revised/raw/'+start+'/'+finish;",
-                    "    Ext.ComponentQuery.query('#CorrChart2Button')[0].enable(true);",
+                    "    Ext.ComponentQuery.query('#SpikeRevisedChannelChart')[0].enable(true);",
                     "}else{",
                     "    my_url='/nmdb/revised/group/'+start+'/'+finish+'/'+module.candle.N_points;",
-                    "    Ext.ComponentQuery.query('#CorrChart2Button')[0].disable(true);",
+                    "    Ext.ComponentQuery.query('#SpikeRevisedChannelChart')[0].disable(true);",
                     "}",
                     "",
                     "module.candle.chart.showLoading('Loading data from server...');",
@@ -311,11 +312,11 @@
             "userConfig": {
                 "fn": "showCandle",
                 "implHandler": [
-                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeCorrChartPanel().up());",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').show(true);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').show(true);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').show(true);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').expand();",
+                    "this.getNavigationPanel().getLayout().setActiveItem(this.getSpikeRevised_Candle_Panel());",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedChoiceSeries').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedShowGrid').show(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').expand();",
                     "",
                     "if (!MyApp.app.spikeRevised)",
                     "   this.Launch();",
@@ -337,9 +338,9 @@
                 "fn": "showChannel",
                 "implHandler": [
                     "this.getNavigationPanel().getLayout().setActiveItem(MyApp.app.spikeRevised.channel.panel);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrIntervalSearch').hide(true);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrChoiceSeries').hide(true);",
-                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeCorrControls').down('#SpikeCorrSelPoints').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedIntervalSearch').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedChoiceSeries').hide(true);",
+                    "Ext.ComponentQuery.query('#Controls')[0].down('#SpikeRevisedControls').down('#SpikeRevisedShowGrid').hide(true);",
                     "MyApp.app.getController(\"Spike\").updateChannelData(MyApp.app.spikeRevised);",
                     "",
                     "",
@@ -348,19 +349,6 @@
                 ]
             },
             "designerId": "44e47bb4-92fa-4e09-9bcf-5bd1d3bc45f3"
-        },
-        {
-            "type": "controllerref",
-            "reference": {
-                "name": "items",
-                "type": "array"
-            },
-            "codeClass": null,
-            "userConfig": {
-                "ref": "SpikeCorrChartPanel",
-                "selector": "#SpikeCorrChartPanel"
-            },
-            "designerId": "dbdefdb6-61a2-4a3b-86dc-8d355e531b3a"
         },
         {
             "type": "controllerref",
@@ -383,10 +371,23 @@
             },
             "codeClass": null,
             "userConfig": {
-                "ref": "SpikeCorrChannelChartPanel",
-                "selector": "#SpikeCorrChannelChartPanel"
+                "ref": "SpikeRevised_Candle_Panel",
+                "selector": "#SpikeRevised_Candle_Panel"
             },
-            "designerId": "6785fc41-fab5-4edf-84ba-963ec41f8ee1"
+            "designerId": "821edb58-5122-4231-8f02-761f9c088e9a"
+        },
+        {
+            "type": "controllerref",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "ref": "SpikeRevised_Channel_Panel",
+                "selector": "#SpikeRevised_Channel_Panel"
+            },
+            "designerId": "212bbce4-d465-4753-9e69-71a788d9afb9"
         }
     ]
 }

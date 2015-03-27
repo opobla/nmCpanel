@@ -7,10 +7,10 @@
     "codeClass": null,
     "userConfig": {
         "container|align": "stretch",
-        "designer|userAlias": "mypanel3",
-        "designer|userClassName": "MyPanel3",
+        "designer|userAlias": "SpikeRevised_Candle_Panel",
+        "designer|userClassName": "SpikeRevised_Candle_Panel",
         "height": 413,
-        "itemId": "SpikeCorrPanel",
+        "itemId": "SpikeRevised_Candle_Panel",
         "layout": "hbox",
         "margin": "0 0 0 3",
         "title": null,
@@ -26,7 +26,7 @@
             },
             "codeClass": null,
             "userConfig": {
-                "itemId": "SpikeCorrChartPanel",
+                "itemId": "SpikeRevised_Candle_Chart_Panel",
                 "layout|flex": 3,
                 "title": null
             },
@@ -43,7 +43,7 @@
                 "container|align": "stretch",
                 "floating": true,
                 "height": 400,
-                "itemId": "SpikeCorrGridPanel",
+                "itemId": "SpikeRevised_Candle_Grid_Panel",
                 "layout": "vbox",
                 "layout|flex": 3,
                 "title": "Marked Data",
@@ -76,7 +76,7 @@
                             "userConfig": {
                                 "dock": null,
                                 "forceFit": true,
-                                "itemId": "MarkedGrid",
+                                "itemId": "SpikeRevised_MarkedGrid",
                                 "store": "RevisitedData",
                                 "title": null
                             },
