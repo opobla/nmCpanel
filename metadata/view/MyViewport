@@ -67,7 +67,7 @@
                             "userConfig": {
                                 "dock": "top",
                                 "margin": "5 0 0 0",
-                                "text": "Chart"
+                                "text": "Candle Chart"
                             },
                             "designerId": "84ec90db-8c83-4f76-ab49-2b4812fbb9da",
                             "cn": [
@@ -105,7 +105,7 @@
                                 "dock": "top",
                                 "itemId": "Chart2Button",
                                 "margin": "5 0 0 0",
-                                "text": "Channels Chart"
+                                "text": "Channel Chart"
                             },
                             "designerId": "9a223568-dc03-44ce-9297-2f3886e447c6",
                             "cn": [
