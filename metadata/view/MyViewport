@@ -1027,30 +1027,11 @@
                                                 "implHandler": [
                                                     "start=Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').down('#ChannelStatsIntervalSearch').down('#IntervalDateFrom').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').down('#ChannelStatsIntervalSearch').down('#IntervalHourFrom').getRawValue();",
                                                     "finish=Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').down('#ChannelStatsIntervalSearch').down('#IntervalDateTo').getRawValue()+' '+Ext.ComponentQuery.query('#Controls')[0].down('#ChannelStatsControls').down('#ChannelStatsIntervalSearch').down('#IntervalHourTo').getRawValue();",
-                                                    "MyApp.app.getController(\"ChannelStats\").searchInterval(start, finish, MyApp.app.channStats);",
+                                                    "MyApp.app.getController(\"ChannelStats\").searchInterval(start, finish);",
                                                     ""
                                                 ]
                                             },
                                             "designerId": "01ef01ee-520a-402b-900c-c9457fc44b73"
-                                        },
-                                        {
-                                            "type": "basicfunction",
-                                            "reference": {
-                                                "name": "items",
-                                                "type": "array"
-                                            },
-                                            "codeClass": null,
-                                            "userConfig": {
-                                                "designer|params": [
-                                                    "str"
-                                                ],
-                                                "fn": "getTimestamp",
-                                                "implHandler": [
-                                                    "var d = str.match(/\\d+/g); //extract date parts",
-                                                    "return +new Date(Date.UTC(d[0], d[1] - 1, d[2], d[3], d[4], d[5])); //build Date object"
-                                                ]
-                                            },
-                                            "designerId": "41d7ff63-7bc5-4f75-bbb4-f839ce63369b"
                                         }
                                     ]
                                 }
