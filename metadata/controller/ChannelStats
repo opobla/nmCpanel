@@ -60,7 +60,7 @@
                     "",
                     "this.app.histo.panel.setLoading(true);",
                     "Ext.Ajax.request({",
-                    "    url: 'http://localhost:8080/nmdadb/channel/histogram/default/default',",
+                    "    url: '/nmdadb/channel/histogram/default/default',",
                     "    success: function(response){",
                     "        var text = response.responseText;",
                     "        var data=Ext.JSON.decode(text);",
